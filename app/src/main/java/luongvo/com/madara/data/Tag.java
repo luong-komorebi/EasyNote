@@ -22,7 +22,7 @@ public class Tag {
 
     public Tag(String name, DB db) {
         try {
-            String[] tmp = db.getArray(name, String.class);
+            String[] tmp = db.getArray("global_" + name, String.class);
             belongTo = new ArrayList<>(Arrays.asList(tmp));
         } catch (SnappydbException e) {
             e.printStackTrace();
@@ -31,7 +31,7 @@ public class Tag {
 
     public void write(DB db) {
         try {
-            db.put(name, belongTo.toArray(new String[belongTo.size()]));
+            db.put("global_" + name, belongTo.toArray(new String[belongTo.size()]));
         } catch (SnappydbException e) {
             e.printStackTrace();
         }

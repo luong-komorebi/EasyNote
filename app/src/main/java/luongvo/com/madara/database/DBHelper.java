@@ -81,6 +81,36 @@ public class DBHelper {
         }
     }
 
+    // Get all available tag for querying and searching
+    public static List<String> getAllTags() {
+    	try {
+    		List<String> rest = new ArrayList<>();
+    		String[] keys = db.findKeys("global_");
+
+    		for (String tmp : keys) {
+    			res.add(tmp.substring(7, tmp.length()));
+    		}
+    		return res;
+    	} catch (SnappydbException e) {
+    		e.printStackTrace();
+    		return null;
+    	}
+    }
+
+    // In Note edit activity
+		/*
+		if (newnote) {
+    		create new blank note = Note("", "", null)
+    	} else if (editnote) {
+    		create new blank note = Note(id, db);
+    	}
+		press save button -> call saveNote (pass created note)
+    	*/
+    public void saveNote(Note note, String name, String content, List<String> tags) {
+    	note.update(name, content, tags);
+    	note.write(db);
+    }
+
     private static void createSampleData() {
         try {
             Notebook madara = new Notebook("Madara", "madara.png", "Shenlong", null);

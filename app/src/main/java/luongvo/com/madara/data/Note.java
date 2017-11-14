@@ -16,7 +16,7 @@ import java.util.UUID;
 public class Note {
     private String name;
     private String id;
-    private String html;
+    private String content;
 
     private Calendar created;
     private Calendar updated;
@@ -24,16 +24,14 @@ public class Note {
 
     List<String> tags;
 
-    public Note(String name, String html, List<String> tags) {
-        this.name = name;
-        this.html = html;
-        this.tags = tags;
-
+    public Note(String name, String content, List<String> tags) {
         id = UUID.randomUUID().toString();
 
         created = Calendar.getInstance();
         updated = created;
         deleted = null;
+
+        update(name, content, tags);
     }
 
     public Note(String id, DB db) {
@@ -41,7 +39,7 @@ public class Note {
             this.id = id;
 
             name = db.get(id);
-            html = db.get(id + "_html");
+            content = db.get(id + "_content");
             created = db.get(id + "_created", Calendar.class);
             updated = db.get(id + "_updated", Calendar.class);
 
@@ -64,7 +62,7 @@ public class Note {
     public void write(DB db) {
         try {
             db.put(id, name);
-            db.put(id + "_html", html);
+            db.put(id + "_content", content);
             db.put(id + "_created", created);
             db.put(id + "_updated", updated);
 
@@ -78,7 +76,11 @@ public class Note {
         }
     }
 
-    public void update() {
+    public void update(String name, String content, List<String> tags) {
+        this.name = name;
+        this.content = content;
+        this.tags = tags;
+
         updated = Calendar.getInstance();
     }
 
