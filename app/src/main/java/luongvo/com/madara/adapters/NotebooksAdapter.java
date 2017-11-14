@@ -25,7 +25,6 @@ public class NotebooksAdapter extends RecyclerView.Adapter<NotebooksAdapter.Note
     private Context context;
     private ArrayList<Notebook> arrNotebooks;
 
-
     public NotebooksAdapter(Context context, ArrayList<Notebook> arrNotebooks) {
         this.context = context;
         this.arrNotebooks = arrNotebooks;
@@ -47,7 +46,6 @@ public class NotebooksAdapter extends RecyclerView.Adapter<NotebooksAdapter.Note
          */
         notebookViewHolder.txtNotebookTitle.setText(notebookResources.getTitle());
         Picasso.with(context).load(notebookResources.getCoverId()).into(notebookViewHolder.imgNotebookCover);
-
 
         /*
          * Add events to notebookViewHolder's elements
@@ -124,7 +122,6 @@ public class NotebooksAdapter extends RecyclerView.Adapter<NotebooksAdapter.Note
 
 
     public class NotebookViewHolder extends RecyclerView.ViewHolder {
-
         public ImageView btnNotebookInfo, btnNotebookLock, btnNotebookDelete;
         public ImageView imgNotebookCover;
         public TextView txtNotebookTitle;

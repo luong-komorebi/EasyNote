@@ -84,8 +84,6 @@ public class NotebooksFragment extends Fragment {
         addControls();
         setupRvNotebooks();
 
-
-
         return view;
     }
 

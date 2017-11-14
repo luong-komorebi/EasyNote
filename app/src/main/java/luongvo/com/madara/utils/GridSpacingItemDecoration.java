@@ -17,7 +17,6 @@ import android.widget.Space;
  */
 
 public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
-
     public GridSpacingItemDecoration() {
     }
 
