@@ -3,6 +3,7 @@ package luongvo.com.madara;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -83,6 +84,10 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
+            Fragment listNoteFragment = new ListNoteFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.list_note_frame, listNoteFragment, listNoteFragment.getClass().getSimpleName())
+                    .addToBackStack(null).commit();
 
         } else if (id == R.id.nav_slideshow) {
 
