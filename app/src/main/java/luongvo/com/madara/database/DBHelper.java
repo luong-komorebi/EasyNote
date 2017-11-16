@@ -1,6 +1,7 @@
 package luongvo.com.madara.database;
 
 import android.content.Context;
+import android.util.Pair;
 
 import luongvo.com.madara.data.Note;
 import luongvo.com.madara.data.Notebook;
@@ -10,6 +11,7 @@ import com.snappydb.DBFactory;
 import com.snappydb.SnappydbException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -81,10 +83,47 @@ public class DBHelper {
         }
     }
 
+    // Get all notes' names for searching
+    // Pair<id, name>
+    public List<Pair<String, String>> getAllNoteName() {
+        try {
+            List<Pair<String, String>> res = new ArrayList<>();
+            String[] notebooks = db.getArray("notebooks", String.class);
+
+            for (int i = 0; i < notebooks.length; ++i) {
+                List<String> noteIds = new ArrayList<>(Arrays.asList(db.getArray(notebooks[i], String.class)));
+                for (int j = 0 ; j < noteIds.size(); ++j) {
+                    res.add(new Pair<>(noteIds.get(j), db.get(noteIds.get(j))));
+                }
+            }
+            return res;
+        } catch (SnappydbException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    // get all notes by tag, called in search activity if user pressed a tag result
+    public List<Note> getNotesByTag(String tag) {
+        try {
+            List<Note> res = new ArrayList<>();
+            String[] tmp = db.getArray("global_" + tag, String.class);
+            List<String> notes = new ArrayList<>(Arrays.asList(tmp));
+
+            for (int i = 0 ; i < notes.size(); ++i) {
+                res.add(new Note(notes.get(i), db));
+            }
+            return res;
+        } catch (SnappydbException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     // Get all available tag for querying and searching
-    public static List<String> getAllTags() {
+    public List<String> getAllTags() {
     	try {
-    		List<String> rest = new ArrayList<>();
+    		List<String> res = new ArrayList<>();
     		String[] keys = db.findKeys("global_");
 
     		for (String tmp : keys) {
