@@ -5,6 +5,9 @@
     android:orientation="vertical"
     tools:context="luongvo.com.madara.fragments.AllNotesFragment">
 
-
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvNotes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

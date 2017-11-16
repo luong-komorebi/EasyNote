@@ -95,8 +95,8 @@ public class NotebooksFragment extends Fragment {
 
         // TODO: Replace example ArrayList with real data list
         notebooksAdapter = new NotebooksAdapter(getContext(), arrNotebooks);
-
         RecyclerView.LayoutManager layoutManager= new GridLayoutManager(getContext(), 2);
+
         layoutManager.setAutoMeasureEnabled(false);
 
         rvNotebooks.addItemDecoration(new GridSpacingItemDecoration());

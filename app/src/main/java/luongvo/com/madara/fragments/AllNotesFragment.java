@@ -1,14 +1,25 @@
 package luongvo.com.madara.fragments;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import com.facebook.drawee.backends.pipeline.Fresco;
+import co.dift.ui.SwipeToAction;
 import luongvo.com.madara.R;
+import luongvo.com.madara.adapters.NotesAdapter;
+import luongvo.com.madara.model.Note;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +38,12 @@ public class AllNotesFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private View view;
+    private ArrayList<Note> arrNotes;
+    private RecyclerView rvNotes;
+    private SwipeToAction staNotes;
+    private NotesAdapter notesAdapter;
 
     private OnFragmentInteractionListener mListener;
 
@@ -65,7 +82,75 @@ public class AllNotesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_all_notes, container, false);
+        view =  inflater.inflate(R.layout.fragment_all_notes, container, false);
+
+        Fresco.initialize(getActivity());
+
+        addControls();
+        setUpRvNotes();
+        setUpStaNotes();
+
+        return view;
+    }
+
+    private void addControls() {
+        rvNotes = view.findViewById(R.id.rvNotes);
+        rvNotes.setHasFixedSize(true);
+    }
+
+    private void setUpRvNotes() {
+
+        // TODO: Replace example ArrayList with real data list
+        arrNotes = new ArrayList<>();
+        arrNotes.add(new Note(0, getString(R.string.content_example)));
+        arrNotes.add(new Note(1, getString(R.string.content_example)));
+        arrNotes.add(new Note(2, getString(R.string.content_example)));
+        arrNotes.add(new Note(3, getString(R.string.content_example)));
+
+        notesAdapter = new NotesAdapter(getActivity(), this.arrNotes);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        rvNotes.setLayoutManager(layoutManager);
+        rvNotes.setAdapter(notesAdapter);
+    }
+
+    private void setUpStaNotes() {
+        staNotes = new SwipeToAction(rvNotes, new SwipeToAction.SwipeListener() {
+
+            @Override
+            public boolean swipeLeft(Object itemData) {
+                //TODO: replace with swipe-left action on an item
+                return true;
+            }
+
+            @Override
+            public boolean swipeRight(Object itemData) {
+                //TODO: replace with swipe-right action on an item
+                return true;
+            }
+
+            @Override
+            public void onClick(Object itemData) {
+                //TODO: replace with click action on an item
+            }
+
+            @Override
+            public void onLongClick(Object itemData) {
+                //TODO: replace with long click action on an item
+            }
+        });
+    }
+
+
+    private void displaySnackBar(String text, String actionName, View.OnClickListener action){
+        Snackbar snack = Snackbar.make(view.findViewById(android.R.id.content), text, Snackbar.LENGTH_LONG)
+                .setAction(actionName, action);
+
+        View v = snack.getView();
+        v.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+        ((TextView) v.findViewById(android.support.design.R.id.snackbar_text)).setTextColor(Color.WHITE);
+        ((TextView) v.findViewById(android.support.design.R.id.snackbar_action)).setTextColor(Color.BLACK);
+
+        snack.show();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
