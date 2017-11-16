@@ -19,11 +19,13 @@ import com.github.clans.fab.FloatingActionMenu;
 
 import luongvo.com.madara.fragments.AllNotesFragment;
 import luongvo.com.madara.fragments.NotebooksFragment;
+import luongvo.com.madara.fragments.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener,
     NotebooksFragment.OnFragmentInteractionListener,
-    AllNotesFragment.OnFragmentInteractionListener {
+    AllNotesFragment.OnFragmentInteractionListener,
+    SettingsFragment.OnFragmentInteractionListener {
 
     private int currentFragmentId;
     private FloatingActionMenu menuMain;
@@ -115,11 +117,14 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         switch (currentFragmentId) {
+            case R.id.nav_notebooks:
+                getMenuInflater().inflate(R.menu.main_notebooks,menu);
+                break;
             case R.id.nav_allnotes:
                 getMenuInflater().inflate(R.menu.main_allnotes,menu);
                 break;
             default:
-                getMenuInflater().inflate(R.menu.main_notebooks, menu);
+                getMenuInflater().inflate(R.menu.main_blank, menu);
                 break;
         }
         return true;
@@ -135,7 +140,7 @@ public class MainActivity extends AppCompatActivity
         // TODO: manage action menu
         switch (id) {
             case R.id.actionNewNotebook:
-
+                // TODO: manage action Add new notebook
                 break;
             case R.id.actionSearchNotebook:
 
@@ -163,6 +168,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_allnotes:
                 choseFragment = AllNotesFragment.newInstance("test_param1", "test_param2");
+                break;
+            case R.id.nav_settings:
+                choseFragment = SettingsFragment.newInstance("test_param1", "test_param2");
                 break;
             case R.id.nav_tags:
                 break;
