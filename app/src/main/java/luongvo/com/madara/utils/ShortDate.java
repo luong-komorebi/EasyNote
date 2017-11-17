@@ -22,8 +22,7 @@ public class ShortDate {
         int paramYear = cParam.get(Calendar.YEAR);
 
         paramMonth++; // to match user's intuition
-
-
+        
         sDate = paramDay + "/" + paramMonth + "/" + paramYear;
 
         return sDate;
