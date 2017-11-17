@@ -1,10 +1,6 @@
 package luongvo.com.madara.model;
 
-
-
-
 import java.util.Date;
-
 import luongvo.com.madara.utils.ShortDate;
 /**
  * Created by Thanh on 11/16/2017.
