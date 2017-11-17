@@ -1,21 +1,19 @@
 package luongvo.com.madara.fragments;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
 
 import java.util.ArrayList;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
+
 import co.dift.ui.SwipeToAction;
 import luongvo.com.madara.R;
 import luongvo.com.madara.adapters.NotesAdapter;
@@ -84,7 +82,6 @@ public class AllNotesFragment extends Fragment {
         // Inflate the layout for this fragment
         view =  inflater.inflate(R.layout.fragment_all_notes, container, false);
 
-        Fresco.initialize(getActivity());
 
         addControls();
         setUpRvNotes();
@@ -102,10 +99,12 @@ public class AllNotesFragment extends Fragment {
 
         // TODO: Replace example ArrayList with real data list
         arrNotes = new ArrayList<>();
-        arrNotes.add(new Note(0, getString(R.string.content_example)));
-        arrNotes.add(new Note(1, getString(R.string.content_example)));
-        arrNotes.add(new Note(2, getString(R.string.content_example)));
-        arrNotes.add(new Note(3, getString(R.string.content_example)));
+        arrNotes.add(new Note(0, getString(R.string.title_example), getString(R.string.content_example)));
+        arrNotes.add(new Note(1, getString(R.string.title_example), getString(R.string.content_example)));
+        arrNotes.add(new Note(2, getString(R.string.title_example), getString(R.string.content_example)));
+        arrNotes.add(new Note(3, getString(R.string.title_example), getString(R.string.content_example)));
+        arrNotes.add(new Note(4, getString(R.string.title_example), getString(R.string.content_example)));
+
 
         notesAdapter = new NotesAdapter(getActivity(), this.arrNotes);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -141,17 +140,6 @@ public class AllNotesFragment extends Fragment {
     }
 
 
-    private void displaySnackBar(String text, String actionName, View.OnClickListener action){
-        Snackbar snack = Snackbar.make(view.findViewById(android.R.id.content), text, Snackbar.LENGTH_LONG)
-                .setAction(actionName, action);
-
-        View v = snack.getView();
-        v.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-        ((TextView) v.findViewById(android.support.design.R.id.snackbar_text)).setTextColor(Color.WHITE);
-        ((TextView) v.findViewById(android.support.design.R.id.snackbar_action)).setTextColor(Color.BLACK);
-
-        snack.show();
-    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

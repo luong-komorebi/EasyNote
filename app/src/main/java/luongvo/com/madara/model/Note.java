@@ -1,51 +1,69 @@
 package luongvo.com.madara.model;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+
+
+
 import java.util.Date;
 
+import luongvo.com.madara.utils.ShortDate;
 /**
  * Created by Thanh on 11/16/2017.
  */
 
 public class Note {
     private int noteID;
-    String timeStamp;
-    String content;
-    String snippet;
+    private String title;
+    private String content;
+    private Date dCreated;
+    private String reminderTime;
 
     public Note(){
 
     }
 
-    public Note(int noteID, String content){
+    public Note(int noteID, String title, String content){
         this.noteID = noteID;
+        this.title = title;
         this.content = content;
-        /*
-         * timeStamp is extracted date from Calendar
-         */
-        Date date =  Calendar.getInstance().getTime();
-        String formattedDate = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(date);
-        this.timeStamp = formattedDate;
+        this.dCreated = new Date();
     }
 
-    public String getSnippet(int length){
-        int contentLength = this.content.length();
-        length = ( length < contentLength ) ? ( length ) : ( contentLength );
-        this.snippet = content.substring(0, length) + "..." ;
-
-        return this.snippet;
+    public int getNoteID(){
+        return noteID;
     }
 
+    public void setNoteID(int id){
+        this.noteID = id;
+    }
 
-    public int getNoteID(){ return noteID; }
+    public String getTitle(){
+        return title;
+    }
 
-    public void setNoteID(int id){ this.noteID = id; }
+    public void setTitle(String title){
+        this.title = title;
+    }
 
-    public String getContent(){ return content; }
+    public String getTimeStamp(){
+        ShortDate distance = new ShortDate(dCreated);
+        return distance.getMyDate();
+    }
 
-    public void setContent(String content){ this.content = content; }
+    public String getReminderTime(){
+        return reminderTime;
+    }
 
-    public String getTimeStamp(){ return this.timeStamp; }
+    public void setReminderTime(String remidnerTime){
+        this.reminderTime = remidnerTime;
+    }
+
+    public String getContent(){
+        return content;
+    }
+
+    public void setContent(String content){
+        this.content = content;
+    }
+
 
 }

@@ -48,16 +48,14 @@
         android:layout_height="match_parent"
         android:padding="@dimen/note_padding">
 
-        <com.facebook.drawee.view.SimpleDraweeView
+        <ImageView
             android:id="@+id/noteIcon"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginEnd="10dp"
-            app:placeholderImage="@drawable/ic_note"
-            app:roundAsCircle="true"/>
+            android:layout_marginEnd="10dp" />
 
         <TextView
-            android:id="@+id/noteSnippet"
+            android:id="@+id/noteTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/noteIcon"
@@ -65,13 +63,40 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
+        <RelativeLayout
+            android:id="@+id/indentRelativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/noteTitle"
+            android:layout_alignStart="@id/noteTitle">
+
+            <TextView
+                android:id="@+id/noteTimeStamp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/colorAccent"/>
+
+            <TextView
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:id="@+id/noteDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"/>
+
+        </RelativeLayout>
+
         <TextView
-            android:id="@+id/noteTimeStamp"
-            android:layout_below="@+id/noteSnippet"
-            android:layout_alignStart="@+id/noteSnippet"
+            android:id="@+id/noteReminder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textColor="@color/colorAccent"
+            android:layout_alignStart="@+id/noteIcon"
+            android:layout_below="@+id/indentRelativeLayout" />
+
+
     </RelativeLayout>
 
 

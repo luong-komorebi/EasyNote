@@ -8,5 +8,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="content_example">Content example string</string>
+
+    <string name="title_example">Title example string</string>
+    <string name="content_example">A string is a data type used in programming,
+        such as an integer and floating point unit, but is used to represent text rather than numbers</string>
+    <string name="sec">Second</string>
 </resources>
