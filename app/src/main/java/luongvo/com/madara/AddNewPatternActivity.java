@@ -19,8 +19,8 @@ public class AddNewPatternActivity extends AppCompatActivity {
     private PatternLockView plvLockApp;
     private TextView txtPattern;
     private Toast confirmFailed;
-    private String inputLockPattern = "",
-            confirmLockPattern = "";
+    private String inputLockPattern = "";
+    private String confirmLockPattern = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class AddNewPatternActivity extends AppCompatActivity {
     }
 
     private void setLockPatternAndExit(String lockPattern) {
-        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.toast_success), Toast.LENGTH_SHORT).show();
         SharedPreferences sP = getSharedPreferences(Constants.sPFileName, MODE_PRIVATE);
         SharedPreferences.Editor editor = sP.edit();
         editor.putString(Constants.sPLockPattern, lockPattern);
@@ -60,13 +60,13 @@ public class AddNewPatternActivity extends AppCompatActivity {
                 if (inputLockPattern.equals("")) {
                     inputLockPattern = lockPattern;
                     plvLockApp.clearPattern();
-                    txtPattern.setText("Confirm you pattern");
+                    txtPattern.setText(getString(R.string.text_view_confirm_pattern));
                 } else {
                     confirmLockPattern = lockPattern;
                     if (!inputLockPattern.equals(confirmLockPattern)) {
-                        /*
-                         * inputLockPattern != confirmLockPattern => confirmation failed
-                         */
+
+                        // inputLockPattern != confirmLockPattern => confirmation failed
+                        
                         confirmLockPattern = "";
                         confirmFailed.show();
                     } else {
@@ -84,8 +84,8 @@ public class AddNewPatternActivity extends AppCompatActivity {
 
     private void configTxt() {
         txtPattern = (TextView) findViewById(R.id.txtPattern);
-        txtPattern.setText("Please choose a pattern");
-        confirmFailed = Toast.makeText(AddNewPatternActivity.this,"Your confirmation pattern does not match. Please try again", Toast.LENGTH_SHORT);
+        txtPattern.setText(getString(R.string.text_view_choose_pattern));
+        confirmFailed = Toast.makeText(AddNewPatternActivity.this,getString(R.string.toast_confirm_new_pattern_failed), Toast.LENGTH_SHORT);
         confirmFailed.setGravity(Gravity.CENTER, 0, 0);
     }
 

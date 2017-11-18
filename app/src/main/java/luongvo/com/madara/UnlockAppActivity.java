@@ -21,13 +21,7 @@ public class UnlockAppActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pattern_lock);
-
-        // TODO: Remove DebugBridge() method to enable Authentication feature
-        /*
-         * DebugBridge enables app to by-pass authentication, for easier developing purpose
-         */
-        debugBridge();
-
+        
         definedLockPattern = getLockPattern();
         if (!definedLockPattern.equals("")) {
             configPlv();
@@ -36,15 +30,11 @@ public class UnlockAppActivity extends AppCompatActivity {
         }
     }
 
-    private void debugBridge() {
-        onSuccessAuthenticate();
-    }
-
     private void onSuccessAuthenticate() {
         Intent mainActivityIntent = new Intent(this, MainActivity.class);
-        /*
-         * Those flags below make MainActivity CAN'T go backward to UnlockAppActivity when pressing Back button
-         */
+
+        // Those flags below make MainActivity CAN'T go backward to UnlockAppActivity when pressing Back button
+
         mainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(mainActivityIntent);
     }

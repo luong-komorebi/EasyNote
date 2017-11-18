@@ -6,6 +6,9 @@
 
     <string name="action_settings">Settings</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_view_choose_pattern">Please choose a pattern</string>
+    <string name="text_view_confirm_pattern">Confirm your pattern</string>
+
+    <string name="toast_confirm_new_pattern_failed">Your confirmation pattern does not match. Please try again</string>
+    <string name="toast_success">Success</string>
 </resources>
