@@ -11,4 +11,8 @@
     <string name="default_user">Default</string>
     <string name="default_user_email">default@apcs.vn</string>
     <string name="untitiled">Untitled</string>
+    <string name="text_view_choose_pattern">Please choose a pattern</string>
+    <string name="text_view_confirm_pattern">Confirm your pattern</string>
+    <string name="toast_confirm_new_pattern_failed">Your confirmation pattern does not match. Please try again</string>
+    <string name="toast_success">Success</string>
 </resources>

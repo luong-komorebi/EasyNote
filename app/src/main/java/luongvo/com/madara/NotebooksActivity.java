@@ -19,11 +19,13 @@ import com.github.clans.fab.FloatingActionMenu;
 
 import luongvo.com.madara.fragments.AllNotesFragment;
 import luongvo.com.madara.fragments.NotebooksFragment;
+import luongvo.com.madara.fragments.SettingsFragment;
 
 public class NotebooksActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         NotebooksFragment.OnFragmentInteractionListener,
-        AllNotesFragment.OnFragmentInteractionListener {
+        AllNotesFragment.OnFragmentInteractionListener,
+        SettingsFragment.OnFragmentInteractionListener {
 
     private int currentFragmentId;
     private FloatingActionMenu menuMain;
@@ -42,9 +44,9 @@ public class NotebooksActivity extends AppCompatActivity
     }
 
     private void addControls() {
-        menuMain = (FloatingActionMenu) findViewById(R.id.menuMain);
-        menuAddTextNote = (FloatingActionButton) findViewById(R.id.menuAddTextNote);
-        menuAddAudioNote = (FloatingActionButton) findViewById(R.id.menuAddAudioNote);
+        menuMain = findViewById(R.id.menuMain);
+        menuAddTextNote = findViewById(R.id.menuAddTextNote);
+        menuAddAudioNote = findViewById(R.id.menuAddAudioNote);
     }
 
     private void addEvents() {
@@ -67,20 +69,20 @@ public class NotebooksActivity extends AppCompatActivity
     }
 
     private void initLayout() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close
         );
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
     }
 
     private void initFragment() {
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_notebooks);
 
@@ -97,7 +99,7 @@ public class NotebooksActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -109,11 +111,14 @@ public class NotebooksActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         switch (currentFragmentId) {
+            case R.id.nav_notebooks:
+                getMenuInflater().inflate(R.menu.main_notebooks,menu);
+                break;
             case R.id.nav_allnotes:
                 getMenuInflater().inflate(R.menu.main_allnotes,menu);
                 break;
             default:
-                getMenuInflater().inflate(R.menu.main_notebooks, menu);
+                getMenuInflater().inflate(R.menu.main_blank, menu);
                 break;
         }
         return true;
@@ -129,7 +134,7 @@ public class NotebooksActivity extends AppCompatActivity
         // TODO: manage action menu
         switch (id) {
             case R.id.actionNewNotebook:
-
+                // TODO: manage action Add new notebook
                 break;
             case R.id.actionSearchNotebook:
 
@@ -158,6 +163,9 @@ public class NotebooksActivity extends AppCompatActivity
             case R.id.nav_allnotes:
                 choseFragment = AllNotesFragment.newInstance("test_param1", "test_param2");
                 break;
+            case R.id.nav_settings:
+                choseFragment = SettingsFragment.newInstance("test_param1", "test_param2");
+                break;
             case R.id.nav_tags:
                 break;
         }
@@ -167,7 +175,7 @@ public class NotebooksActivity extends AppCompatActivity
         // Make content_main_frame contains choseFragment
         loadFragmentToMainFrame(choseFragment);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

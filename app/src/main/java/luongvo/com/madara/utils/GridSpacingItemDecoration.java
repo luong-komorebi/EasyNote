@@ -1,12 +1,7 @@
 package luongvo.com.madara.utils;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Rect;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Space;

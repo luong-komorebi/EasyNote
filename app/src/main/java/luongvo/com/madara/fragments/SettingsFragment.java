@@ -1,35 +1,32 @@
 package luongvo.com.madara.fragments;
 
-
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import luongvo.com.madara.R;
-import luongvo.com.madara.adapters.NotebooksAdapter;
-import luongvo.com.madara.database.DBHelper;
-import luongvo.com.madara.model.Notebook;
-import luongvo.com.madara.utils.GridSpacingItemDecoration;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
-import java.util.List;
+import luongvo.com.madara.AddNewPatternActivity;
+import luongvo.com.madara.R;
+import luongvo.com.madara.utils.Constants;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link OnFragmentInteractionListener} interface
+ * {@link SettingsFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link NotebooksFragment#newInstance} factory method to
+ * Use the {@link SettingsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NotebooksFragment extends Fragment {
+public class SettingsFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -40,13 +37,11 @@ public class NotebooksFragment extends Fragment {
     private String mParam2;
 
     private View view;
-    private RecyclerView rvNotebooks;
-    private List<Notebook> arrNotebooks;
-    private NotebooksAdapter notebooksAdapter;
+    private Switch swPatternLock;
 
     private OnFragmentInteractionListener mListener;
 
-    public NotebooksFragment() {
+    public SettingsFragment() {
         // Required empty public constructor
     }
 
@@ -56,11 +51,11 @@ public class NotebooksFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment NotebooksFragment.
+     * @return A new instance of fragment SettingsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static NotebooksFragment newInstance(String param1, String param2) {
-        NotebooksFragment fragment = new NotebooksFragment();
+    public static SettingsFragment newInstance(String param1, String param2) {
+        SettingsFragment fragment = new SettingsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -81,32 +76,46 @@ public class NotebooksFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_notebooks, container, false);
+        view = inflater.inflate(R.layout.fragment_settings, container, false);
 
         addControls();
-        setupRvNotebooks();
+        addEvents();
 
         return view;
     }
 
-    private void setupRvNotebooks() {
-        arrNotebooks = DBHelper.getNotebooks();
-
-        // TODO: Replace example ArrayList with real data list
-        notebooksAdapter = new NotebooksAdapter(getContext(), arrNotebooks);
-
-        RecyclerView.LayoutManager layoutManager= new GridLayoutManager(getContext(), 2);
-        layoutManager.setAutoMeasureEnabled(false);
-
-        rvNotebooks.addItemDecoration(new GridSpacingItemDecoration());
-        rvNotebooks.setLayoutManager(layoutManager);
-        rvNotebooks.setItemAnimator(new DefaultItemAnimator());
-        rvNotebooks.setAdapter(notebooksAdapter);
+    private void addControls() {
+        swPatternLock = view.findViewById(R.id.swPatternLock);
+        swPatternLock.setChecked(checkIfPatternLockOn());
     }
 
-    private void addControls() {
-        rvNotebooks = view.findViewById(R.id.rvNotebooks);
-        rvNotebooks.setHasFixedSize(true);
+    private void addEvents() {
+        swPatternLock.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b != checkIfPatternLockOn()) {
+                    if (b) {
+                        Intent addNewPatternIntent = new Intent(getContext(), AddNewPatternActivity.class);
+                        startActivity(addNewPatternIntent);
+                    } else {
+                        deletePatternLock();
+                    }
+                }
+            }
+        });
+    }
+
+    private void deletePatternLock() {
+        SharedPreferences sP = getContext().getSharedPreferences(Constants.sPFileName, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sP.edit();
+        editor.putString(Constants.sPLockPattern, "");
+        editor.apply();
+    }
+
+    private boolean checkIfPatternLockOn() {
+        SharedPreferences sP = getContext().getSharedPreferences(Constants.sPFileName, MODE_PRIVATE);
+        String lockPattern = sP.getString(Constants.sPLockPattern,"");
+        return !lockPattern.equals("");
     }
 
     // TODO: Rename method, update argument and hook method into UI event
