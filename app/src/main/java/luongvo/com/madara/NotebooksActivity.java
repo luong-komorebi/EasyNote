@@ -27,6 +27,9 @@ public class NotebooksActivity extends AppCompatActivity
         AllNotesFragment.OnFragmentInteractionListener,
         SettingsFragment.OnFragmentInteractionListener {
 
+    // Starting value for currentFragmentId when no navigation option is selected on activity start
+    private final int INIT_FRAGMENT_ID = -1;
+
     private int currentFragmentId;
     private FloatingActionMenu menuMain;
     private FloatingActionButton menuAddTextNote, menuAddAudioNote;
@@ -35,6 +38,8 @@ public class NotebooksActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notebooks);
+
+        currentFragmentId = INIT_FRAGMENT_ID;
 
         initLayout();
         initFragment();
@@ -111,6 +116,7 @@ public class NotebooksActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         switch (currentFragmentId) {
+            case INIT_FRAGMENT_ID:
             case R.id.nav_notebooks:
                 getMenuInflater().inflate(R.menu.main_notebooks,menu);
                 break;
