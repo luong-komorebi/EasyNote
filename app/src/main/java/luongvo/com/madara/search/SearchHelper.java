@@ -3,6 +3,7 @@ package luongvo.com.madara.search;
 import android.util.Pair;
 
 import luongvo.com.madara.database.DBHelper;
+import luongvo.com.madara.database.DBSchema;
 import luongvo.com.madara.model.Note;
 import luongvo.com.madara.model.Notebook;
 
@@ -32,7 +33,7 @@ public class SearchHelper {
 
         for (int i = 0; i < tagList.size(); ++i) {
     	    if (tagList.get(i).toLowerCase().contains(query.toLowerCase())) {
-    	        res.add(new Pair<>("tag", tagList.get(i)));
+    	        res.add(new Pair<>(DBSchema.TAG_PREFIX, tagList.get(i)));
             }
         }
         return res;
