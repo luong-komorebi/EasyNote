@@ -4,7 +4,4 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="luongvo.com.madara.fragments.AllNotesFragment">
-
-
-
 </LinearLayout>

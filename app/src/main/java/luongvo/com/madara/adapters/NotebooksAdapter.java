@@ -9,30 +9,27 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
 
 import luongvo.com.madara.R;
 import luongvo.com.madara.model.Notebook;
+import com.squareup.picasso.Picasso;
 
-/**
- * Created by VVLv on 11/7/2017.
- */
+import java.util.List;
+
 
 public class NotebooksAdapter extends RecyclerView.Adapter<NotebooksAdapter.NotebookViewHolder> {
 
     private Context context;
-    private ArrayList<Notebook> arrNotebooks;
+    private List<Notebook> arrNotebooks;
 
-    public NotebooksAdapter(Context context, ArrayList<Notebook> arrNotebooks) {
+    public NotebooksAdapter(Context context, List<Notebook> arrNotebooks) {
         this.context = context;
         this.arrNotebooks = arrNotebooks;
     }
 
     @Override
     public NotebookViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.notebook, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_notebook, parent, false);
         return (new NotebookViewHolder(itemView));
     }
 
@@ -44,8 +41,8 @@ public class NotebooksAdapter extends RecyclerView.Adapter<NotebooksAdapter.Note
         /*
          * Add resources to notebookViewHolder's elements
          */
-        notebookViewHolder.txtNotebookTitle.setText(notebookResources.getTitle());
-        Picasso.with(context).load(notebookResources.getCoverId()).into(notebookViewHolder.imgNotebookCover);
+        notebookViewHolder.txtNotebookTitle.setText(notebookResources.getName());
+        Picasso.with(context).load(notebookResources.getCover()).into(notebookViewHolder.imgNotebookCover);
 
         /*
          * Add events to notebookViewHolder's elements
@@ -130,12 +127,12 @@ public class NotebooksAdapter extends RecyclerView.Adapter<NotebooksAdapter.Note
 
         public NotebookViewHolder(View itemView) {
             super(itemView);
-            btnNotebookInfo = itemView.findViewById(R.id.btnNotebookInfo);
-            btnNotebookLock = itemView.findViewById(R.id.btnNotebookLock);
-            btnNotebookDelete = itemView.findViewById(R.id.btnNotebookDelete);
-            imgNotebookCover = itemView.findViewById(R.id.imgNotebookCover);
-            txtNotebookTitle = itemView.findViewById(R.id.txtNotebookTitle);
-            layoutNotebook = itemView.findViewById(R.id.layoutNotebook);
+            btnNotebookInfo = (ImageView) itemView.findViewById(R.id.btnNotebookInfo);
+            btnNotebookLock = (ImageView) itemView.findViewById(R.id.btnNotebookLock);
+            btnNotebookDelete = (ImageView) itemView.findViewById(R.id.btnNotebookDelete);
+            imgNotebookCover = (ImageView) itemView.findViewById(R.id.imgNotebookCover);
+            txtNotebookTitle = (TextView) itemView.findViewById(R.id.txtNotebookTitle);
+            layoutNotebook = (LinearLayout) itemView.findViewById(R.id.layoutNotebook);
         }
     }
 }

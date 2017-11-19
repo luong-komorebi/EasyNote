@@ -8,4 +8,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="default_user">Default</string>
+    <string name="default_user_email">default@apcs.vn</string>
+    <string name="untitiled">Untitled</string>
 </resources>

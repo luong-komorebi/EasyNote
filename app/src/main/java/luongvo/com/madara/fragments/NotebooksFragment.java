@@ -1,5 +1,6 @@
 package luongvo.com.madara.fragments;
 
+
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,21 +9,22 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import java.util.ArrayList;
-
 import luongvo.com.madara.R;
 import luongvo.com.madara.adapters.NotebooksAdapter;
+import luongvo.com.madara.database.DBHelper;
 import luongvo.com.madara.model.Notebook;
 import luongvo.com.madara.utils.GridSpacingItemDecoration;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link NotebooksFragment.OnFragmentInteractionListener} interface
+ * {@link OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link NotebooksFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -39,7 +41,7 @@ public class NotebooksFragment extends Fragment {
 
     private View view;
     private RecyclerView rvNotebooks;
-    private ArrayList<Notebook> arrNotebooks;
+    private List<Notebook> arrNotebooks;
     private NotebooksAdapter notebooksAdapter;
 
     private OnFragmentInteractionListener mListener;
@@ -88,10 +90,7 @@ public class NotebooksFragment extends Fragment {
     }
 
     private void setupRvNotebooks() {
-        arrNotebooks = new ArrayList<>();
-        arrNotebooks.add(new Notebook(R.drawable.notebook_cover_1, "Untitled"));
-        arrNotebooks.add(new Notebook(R.drawable.notebook_cover_2, "Untitled2"));
-        arrNotebooks.add(new Notebook(R.drawable.notebook_cover_3, "Untitled3"));
+        arrNotebooks = DBHelper.getNotebooks();
 
         // TODO: Replace example ArrayList with real data list
         notebooksAdapter = new NotebooksAdapter(getContext(), arrNotebooks);
@@ -106,7 +105,7 @@ public class NotebooksFragment extends Fragment {
     }
 
     private void addControls() {
-        rvNotebooks = view.findViewById(R.id.rvNotebooks);
+        rvNotebooks = (RecyclerView) view.findViewById(R.id.rvNotebooks);
         rvNotebooks.setHasFixedSize(true);
     }
 
