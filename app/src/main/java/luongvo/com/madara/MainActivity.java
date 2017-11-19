@@ -30,8 +30,4 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         DBHelper.close();
     }
-    
-    public void onFragmentInteraction(Uri uri) {
-
-    }
 }
