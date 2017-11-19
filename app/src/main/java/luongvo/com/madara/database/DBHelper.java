@@ -82,6 +82,23 @@ public class DBHelper {
         }
     }
 
+    // Get all notebook's names for searching
+    // Pair<id, name>
+    public List<Pair<String, String>> getAllNotebookNames() {
+        try {
+            List<Pair<String, String>> res = new ArrayList<>();
+            String[] notebooks = db.getArray(DBSchema.NOTEBOOK_IDS, String.class);
+
+            for (int i = 0; i < notebooks.length; ++i) {
+                res.add(new Pair<>(notebooks[i], db.get(notebooks[i])));
+            }
+            return res;
+        } catch (SnappydbException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     // Get all notes' names for searching
     // Pair<id, name>
     public List<Pair<String, String>> getAllNoteNames() {
