@@ -14,8 +14,8 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 
-import co.dift.ui.SwipeToAction;
 import luongvo.com.madara.R;
+import luongvo.com.madara.libs.SwipeToAction;
 import luongvo.com.madara.adapters.NotesAdapter;
 import luongvo.com.madara.model.Note;
 
@@ -42,6 +42,7 @@ public class AllNotesFragment extends Fragment {
     private RecyclerView rvNotes;
     private SwipeToAction staNotes;
     private NotesAdapter notesAdapter;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -82,13 +83,13 @@ public class AllNotesFragment extends Fragment {
         // Inflate the layout for this fragment
         view =  inflater.inflate(R.layout.fragment_all_notes, container, false);
 
-
         addControls();
         setUpRvNotes();
         setUpStaNotes();
 
         return view;
     }
+
 
     private void addControls() {
         rvNotes = view.findViewById(R.id.rvNotes);
@@ -105,11 +106,12 @@ public class AllNotesFragment extends Fragment {
         arrNotes.add(new Note(3, getString(R.string.title_example), getString(R.string.content_example)));
         arrNotes.add(new Note(4, getString(R.string.title_example), getString(R.string.content_example)));
 
-
         notesAdapter = new NotesAdapter(getActivity(), this.arrNotes);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         rvNotes.setLayoutManager(layoutManager);
         rvNotes.setAdapter(notesAdapter);
+
+
     }
 
     private void setUpStaNotes() {
@@ -136,11 +138,12 @@ public class AllNotesFragment extends Fragment {
             public void onLongClick(Object itemData) {
                 //TODO: replace with long click action on an item
             }
+
+
         });
+
+
     }
-
-
-
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

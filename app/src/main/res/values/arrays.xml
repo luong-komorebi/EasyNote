@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tags_example">
+        <item>Text</item>
+        <item>Audio</item>
+        <item>Important</item>
+        <item>Due soon</item>
+        <item>Visual</item>
+    </string-array>
+</resources>

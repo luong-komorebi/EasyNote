@@ -2,19 +2,21 @@ package luongvo.com.madara.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.google.android.flexbox.FlexboxLayout;
+import com.pchmn.materialchips.ChipView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
-import co.dift.ui.SwipeToAction;
 import luongvo.com.madara.R;
+import luongvo.com.madara.libs.SwipeToAction;
 import luongvo.com.madara.model.Note;
-import luongvo.com.madara.utils.LeadingMargin;
+
 
 /**
  * Created by Thanh on 11/16/2017.
@@ -40,33 +42,73 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         Note note = arrNotes.get(position);
+
         NoteViewHolder vhNote = (NoteViewHolder) holder;
 
         vhNote.txtNoteTitle.setText(note.getTitle());
+
         vhNote.txtNoteTimeStamp.setText(note.getTimeStamp());
 
         //TODO: Set the actual description ( if any ) instead of content
-        SpannableString ssNoteDescription = new SpannableString(note.getContent());
-
-        // call measure() so that getMeasuredWidth returns actual width ( otherwise it returns 0 )
-        vhNote.txtNoteTimeStamp.measure(0,0);
-
-        ssNoteDescription       // push the 1st line of noteDescription
-                                // to the left of noteTimeStamp ( + 10 as padding )
-                                // while other lines of note Description use
-                                // all the spaces below noteTimeStamp
-                .setSpan(new LeadingMargin(1, vhNote.txtNoteTimeStamp.getMeasuredWidth() + 10 )
-                            , 0
-                            , ssNoteDescription.length(), 0);
-        vhNote.txtNoteDescription.setText(ssNoteDescription);
+        vhNote.txtNoteDescription.setText(note.getContent());
 
         //TODO: Decide wether to set and set the actual reminder date
-        vhNote.txtNoteReminder.setText("ReminderDate");
+        vhNote.txtNoteReminder.setText(R.string.reminderDateStr);
 
-        //TODO: load note's desired icon here
+        //TODO: replace with [BACK_END] function_call to return representative image of a note
         vhNote.imgNoteIcon.setImageResource(R.drawable.ic_note);
 
+        loadTagsToFlexBox(vhNote.flexboxLayout, note);
+
         vhNote.data = note;
+    }
+
+
+    private void loadTagsToFlexBox(FlexboxLayout flexboxLayout, Note note){
+
+        // TODO: Replace by actual ArrayList<TAG> tags
+        ArrayList<String> tags = new ArrayList<>();
+
+        //TODO: replace with the actual tags of the notes
+        tags.addAll(Arrays.asList(context.getResources().getStringArray(R.array.tags_example)));
+
+        if(tags.isEmpty()){
+            return;
+        }
+
+        FlexboxLayout.LayoutParams chipParams =
+                new FlexboxLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                                                ViewGroup.LayoutParams.WRAP_CONTENT);
+        // distance ( margins ) between ChipViews
+        chipParams.setMargins(context.getResources().getDimensionPixelSize(R.dimen.chip_left_margin),
+                                 context.getResources().getDimensionPixelSize(R.dimen.chip_top_margin),
+                                  context.getResources().getDimensionPixelSize(R.dimen.chip_right_margin),
+                                   context.getResources().getDimensionPixelSize(R.dimen.chip_bottom_margin));
+
+        for(String tagName: tags){
+            ChipView chip = new ChipView(context);
+            chip.setLayoutParams(chipParams);
+            chip.setLabel(tagName);
+
+            //TODO: Set individual tag's styling here
+            chip.setLabelColor(context.getColor(R.color.chipLabelColor));
+            chip.setChipBackgroundColor(context.getColor(R.color.chipBackgroundColor));
+
+            chip.setOnChipClicked(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //TODO: Handle click action on a tag
+                }
+            });
+            chip.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    //TODO: Handle long click action on a tag
+                    return false;
+                }
+            });
+            flexboxLayout.addView(chip);
+        }
     }
 
     @Override
@@ -75,11 +117,14 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
 
+
     public class NoteViewHolder extends SwipeToAction.ViewHolder<Note> {
         private TextView txtNoteTitle;
         private TextView txtNoteTimeStamp;
         private TextView txtNoteDescription;
         private TextView txtNoteReminder;
+        private FlexboxLayout flexboxLayout;
+
         private ImageView imgNoteIcon;
 
         private NoteViewHolder(View itemView) {
@@ -90,6 +135,8 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             txtNoteDescription = itemView.findViewById(R.id.noteDescription);
             txtNoteReminder = itemView.findViewById(R.id.noteReminder);
             imgNoteIcon =  itemView.findViewById(R.id.noteIcon);
+            flexboxLayout = itemView.findViewById(R.id.flexboxLayout);
+
         }
     }
 }

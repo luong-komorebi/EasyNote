@@ -2,7 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/note_height">
+    android:layout_height="wrap_content"
+    xmlns:autolabel="http://schemas.android.com/tools">
 
     <!-- this view reveals when swipe right -->
     <RelativeLayout
@@ -56,45 +57,56 @@
 
         <TextView
             android:id="@+id/noteTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/noteIcon"
             android:singleLine="true"
-            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <RelativeLayout
-            android:id="@+id/indentRelativeLayout"
+            android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/noteTitle"
-            android:layout_alignStart="@id/noteTitle">
+            android:layout_alignStart="@id/noteTitle"
+            android:layout_below="@id/noteTitle">
 
             <TextView
                 android:id="@+id/noteTimeStamp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="@color/colorAccent"/>
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
 
             <TextView
-                android:ellipsize="end"
-                android:maxLines="3"
                 android:id="@+id/noteDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"/>
-
+                android:layout_alignStart="@id/noteTimeStamp"
+                android:layout_below="@id/noteTimeStamp"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:textSize="14sp" />
         </RelativeLayout>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/flexboxLayout"
+            app:flexWrap="wrap"
+            app:showDividerHorizontal="end"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/noteTitle"
+            android:layout_below="@id/relativeLayout"/>
 
         <TextView
             android:id="@+id/noteReminder"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:layout_alignStart="@+id/noteTitle"
+            android:layout_below="@+id/flexboxLayout"
             android:textColor="@color/colorAccent"
-            android:layout_alignStart="@+id/noteIcon"
-            android:layout_below="@+id/indentRelativeLayout" />
+            android:textStyle="bold" />
 
 
     </RelativeLayout>

@@ -18,12 +18,14 @@ public class ShortDate {
         Calendar cParam = Calendar.getInstance();
         cParam.setTime(dParam);
         int paramDay = cParam.get(Calendar.DAY_OF_MONTH);
-        int paramMonth = cParam.get(Calendar.MONTH); // will return months starting from 0
+ 	//NOTE: months starting from 0
+        int paramMonth = cParam.get(Calendar.MONTH);
         int paramYear = cParam.get(Calendar.YEAR);
 
-        paramMonth++; // to match user's intuition
+	// make it intuitive
+        paramMonth++;
 
-
+	// TODO: Handle "IF"s to assign appropriate string here
         sDate = paramDay + "/" + paramMonth + "/" + paramYear;
 
         return sDate;

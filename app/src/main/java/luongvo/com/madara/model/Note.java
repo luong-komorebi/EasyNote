@@ -1,10 +1,7 @@
 package luongvo.com.madara.model;
 
-
-
-
+import java.util.ArrayList;
 import java.util.Date;
-
 import luongvo.com.madara.utils.ShortDate;
 /**
  * Created by Thanh on 11/16/2017.
@@ -14,6 +11,7 @@ public class Note {
     private int noteID;
     private String title;
     private String content;
+    private ArrayList<String> tags;
     private Date dCreated;
     private String reminderTime;
 
@@ -47,6 +45,14 @@ public class Note {
     public String getTimeStamp(){
         ShortDate distance = new ShortDate(dCreated);
         return distance.getMyDate();
+    }
+
+    public ArrayList<String> getTags(){
+        return this.tags;
+    }
+
+    public void setTags(ArrayList<String> tags){
+        this.tags = tags;
     }
 
     public String getReminderTime(){
