@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import luongvo.com.madara.R;
 import luongvo.com.madara.model.Notebook;
+import luongvo.com.madara.utils.Constants;
+
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -41,7 +43,12 @@ public class NotebooksAdapter extends RecyclerView.Adapter<NotebooksAdapter.Note
         /*
          * Add resources to notebookViewHolder's elements
          */
-        notebookViewHolder.txtNotebookTitle.setText(notebookResources.getName());
+        String notebookTitle = notebookResources.getName();
+        if (!(notebookTitle.length() <= Constants.maxTxtNotebookTitleLength)) {
+            notebookTitle = notebookTitle.substring(0, Constants.maxTxtNotebookTitleLength);
+        }
+
+        notebookViewHolder.txtNotebookTitle.setText(notebookTitle);
         Picasso.with(context).load(notebookResources.getCover()).into(notebookViewHolder.imgNotebookCover);
 
         /*
