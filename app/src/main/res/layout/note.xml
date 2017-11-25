@@ -77,6 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorAccent"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -87,7 +88,7 @@
                 android:layout_below="@id/noteTimeStamp"
                 android:ellipsize="end"
                 android:maxLines="3"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
         </RelativeLayout>
 
         <com.google.android.flexbox.FlexboxLayout
@@ -96,17 +97,8 @@
             app:showDividerHorizontal="end"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@id/noteTitle"
+            android:layout_alignStart="@id/noteIcon"
             android:layout_below="@id/relativeLayout"/>
-
-        <TextView
-            android:id="@+id/noteReminder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/noteTitle"
-            android:layout_below="@+id/flexboxLayout"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold" />
 
 
     </RelativeLayout>

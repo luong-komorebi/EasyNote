@@ -19,5 +19,6 @@
     <string name="oneTagRemovedMsg"> removed</string>
     <string name="oneTagClickedMsg"> clicked</string>
     <string name="reminderDateStr">Remind date:</string>
+    <string name="shrinkString">X</string>
 
 </resources>

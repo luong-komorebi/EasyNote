@@ -90,11 +90,11 @@ public class AllNotesFragment extends Fragment {
         return view;
     }
 
-
     private void addControls() {
         rvNotes = view.findViewById(R.id.rvNotes);
         rvNotes.setHasFixedSize(true);
     }
+
 
     private void setUpRvNotes() {
 

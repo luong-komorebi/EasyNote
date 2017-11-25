@@ -13,7 +13,7 @@ public class Note {
     private String content;
     private ArrayList<String> tags;
     private Date dCreated;
-    private String reminderTime;
+    private String reminderTime ="";
 
     public Note(){
 
@@ -25,7 +25,9 @@ public class Note {
         this.content = content;
         this.dCreated = new Date();
     }
-
+    public boolean hasReminderDate(){
+        return( reminderTime != null );
+    }
     public int getNoteID(){
         return noteID;
     }
