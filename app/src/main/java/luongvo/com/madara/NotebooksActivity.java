@@ -19,13 +19,15 @@ import com.github.clans.fab.FloatingActionMenu;
 
 import luongvo.com.madara.fragments.AllNotesFragment;
 import luongvo.com.madara.fragments.NotebooksFragment;
+import luongvo.com.madara.fragments.QuickNotesFragment;
 import luongvo.com.madara.fragments.SettingsFragment;
 
 public class NotebooksActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         NotebooksFragment.OnFragmentInteractionListener,
         AllNotesFragment.OnFragmentInteractionListener,
-        SettingsFragment.OnFragmentInteractionListener {
+        SettingsFragment.OnFragmentInteractionListener,
+        QuickNotesFragment.OnFragmentInteractionListener {
 
     // Starting value for currentFragmentId when no navigation option is selected on activity start
     private final int INIT_FRAGMENT_ID = -1;
@@ -168,6 +170,9 @@ public class NotebooksActivity extends AppCompatActivity
                 break;
             case R.id.nav_allnotes:
                 choseFragment = AllNotesFragment.newInstance("test_param1", "test_param2");
+                break;
+            case R.id.nav_quicknotes:
+                choseFragment = QuickNotesFragment.newInstance("test_param1", "test_param2");
                 break;
             case R.id.nav_settings:
                 choseFragment = SettingsFragment.newInstance("test_param1", "test_param2");
