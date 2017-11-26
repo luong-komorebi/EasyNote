@@ -50,12 +50,12 @@
         android:padding="@dimen/note_padding">
 
         <ImageView
-            android:id="@+id/reminderImageView"
+            android:id="@+id/noteReminder"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_alignParentEnd="true"
             android:layout_alignEnd="@id/relativeLayout"
-            android:src="@drawable/ic_reminder"/>
+            />
 
         <ImageView
             android:id="@+id/noteIcon"

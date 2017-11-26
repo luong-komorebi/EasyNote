@@ -61,6 +61,10 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         vhNote.txtNoteDescription.setText(note.getContent());
         vhNote.imgNoteIcon.setImageResource(R.drawable.ic_note);
 
+        // Load reminder date only if it's not null ( DIFFERENT from !isEmpty() )
+        if(note.getReminderTime()!=null){
+            vhNote.imgReminder.setImageResource(R.drawable.ic_reminder);
+        }
 
         // TODO: Replace by actual ArrayList<TAG> tags
         ArrayList<String> tags = new ArrayList<>();
@@ -123,6 +127,7 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         private TextView txtNoteTimeStamp;
         private TextView txtNoteDescription;
         private FlexboxLayout flexboxLayout;
+        private ImageView imgReminder;
         private ImageView imgNoteIcon;
 
         private NoteViewHolder(View itemView) {
@@ -132,6 +137,7 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             txtNoteTimeStamp = itemView.findViewById(R.id.noteTimeStamp);
             txtNoteDescription = itemView.findViewById(R.id.noteDescription);
             imgNoteIcon =  itemView.findViewById(R.id.noteIcon);
+            imgReminder = itemView.findViewById(R.id.noteReminder);
             flexboxLayout = itemView.findViewById(R.id.flexboxLayout);
 
         }
