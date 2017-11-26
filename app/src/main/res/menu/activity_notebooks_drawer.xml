@@ -11,6 +11,10 @@
             android:icon="@drawable/ic_menu_all_notes"
             android:title="All Notes" />
         <item
+            android:id="@+id/nav_quicknotes"
+            android:icon="@drawable/ic_menu_quick_notes"
+            android:title="Quick Notes" />
+        <item
             android:id="@+id/nav_tags"
             android:icon="@drawable/ic_menu_tag"
             android:title="Tags" />

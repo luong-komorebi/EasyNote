@@ -15,4 +15,12 @@ public class Constants {
      * Name of preference: Lock Pattern defined by user to unlock app
      */
     public static final String sPLockPattern = "sPLockPattern";
+
+    // Number of columns of QuickNotes StaggeredGridLayoutManager
+    public static final int staggeredGridSpanCount = 2;
+
+    // Max & Min number of lines of txtQuickNoteContent
+    public static final int minTxtQuickNoteContentMaxLines = 5;
+    public static final int maxTxtQuickNoteContentMaxLines = 10;
+
 }
