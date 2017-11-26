@@ -50,6 +50,14 @@
         android:padding="@dimen/note_padding">
 
         <ImageView
+            android:id="@+id/reminderImageView"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignEnd="@id/relativeLayout"
+            android:src="@drawable/ic_reminder"/>
+
+        <ImageView
             android:id="@+id/noteIcon"
             android:layout_width="48dp"
             android:layout_height="48dp"
@@ -76,8 +84,8 @@
                 android:id="@+id/noteTimeStamp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorAccent"
-                android:textSize="16sp"
+                android:textColor="@color/blue_ish"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -88,6 +96,7 @@
                 android:layout_below="@id/noteTimeStamp"
                 android:ellipsize="end"
                 android:maxLines="3"
+                android:textColor="@color/chipLabelColor"
                 android:textSize="16sp" />
         </RelativeLayout>
 
@@ -95,6 +104,7 @@
             android:id="@+id/flexboxLayout"
             app:flexWrap="wrap"
             app:showDividerHorizontal="end"
+            android:paddingTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignStart="@id/noteIcon"

@@ -4,11 +4,24 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
     <dimen name="nav_header_height">180dp</dimen>
+    <dimen name="note_title_text_size">18sp</dimen>
+    <dimen name="note_time_stamp_text_size">14sp</dimen>
+    <dimen name="note_description_text_size">16sp</dimen>
+
+    <dimen name="chip_text_size">12sp</dimen>
+
+    <dimen name="chip_top_padding">0dp</dimen>
+    <dimen name="chip_left_padding">2dp</dimen>
+    <dimen name="chip_bottom_padding">0dp</dimen>
+    <dimen name="chip_right_padding">2dp</dimen>
+
     <dimen name="chip_top_margin">1dp</dimen>
     <dimen name="chip_left_margin">1dp</dimen>
     <dimen name="chip_bottom_margin">1dp</dimen>
     <dimen name="chip_right_margin">1dp</dimen>
+
     <dimen name="fab_margin">16dp</dimen>
+
     <dimen name="note_height">120dp</dimen>
     <dimen name="note_padding">16dp</dimen>
 </resources>

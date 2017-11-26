@@ -9,5 +9,6 @@
     <color name="colorNoteBackground">#FFF</color>
     <color name="chipBackgroundColor">#FBC02D</color>
     <color name="chipLabelColor">#000000</color>
-
+    <color name="gray">#BDBDBD</color>
+    <color name="blue_ish">#8991c7</color>
 </resources>
