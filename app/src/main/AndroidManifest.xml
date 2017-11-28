@@ -26,6 +26,7 @@
         <activity android:name=".NotebooksActivity"/>
         <activity
             android:name=".AddNewPatternActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
