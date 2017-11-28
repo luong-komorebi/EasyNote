@@ -23,7 +23,8 @@ import luongvo.com.madara.model.Notebook;
 import luongvo.com.madara.model.QuickNote;
 
 
-public class QuickNotesAdapter extends RecyclerView.Adapter<QuickNotesAdapter.QuickNoteViewHolder> implements ItemTouchHelperAdapter {
+public class QuickNotesAdapter extends RecyclerView.Adapter<QuickNotesAdapter.QuickNoteViewHolder>
+        implements ItemTouchHelperAdapter {
 
     private Context context;
     private List<QuickNote> arrQuickNotes;
@@ -51,7 +52,6 @@ public class QuickNotesAdapter extends RecyclerView.Adapter<QuickNotesAdapter.Qu
         quickNoteViewHolder.txtQuickNoteContent.setMaxLines(quickNoteResources.getMaxLines());
         quickNoteViewHolder.layoutQuickNote
             .setCardBackgroundColor(context.getColor(quickNoteResources.getColorId()));
-
 
         // Add events to QuickNoteViewHolder's elements
         quickNoteViewHolder.layoutQuickNote.setOnClickListener(new View.OnClickListener() {
