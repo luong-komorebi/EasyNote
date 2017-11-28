@@ -183,7 +183,11 @@ public class DBHelper {
             List<String> noteIds = new ArrayList<>();
             noteIds.add(firstNote.getId());
             noteIds.add(delNote.getId());
-            Notebook firstNB = new Notebook("My First Notebook My First Notebook My First Notebook", R.drawable.notebook_cover_8, "", noteIds);
+            Notebook firstNB = new Notebook(
+                "My First Notebook My First Notebook My First Notebook",
+                R.drawable.notebook_cover_8, "",
+                noteIds
+            );
             firstNB.write(db);
 
             List<String> firstBelongTo = new ArrayList<>();
