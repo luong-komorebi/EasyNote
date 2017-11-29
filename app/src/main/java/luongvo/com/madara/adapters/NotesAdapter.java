@@ -62,6 +62,7 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         vhNote.imgNoteIcon.setImageResource(R.drawable.ic_note);
 
         // Load reminder date only if it's not null ( DIFFERENT from !isEmpty() )
+        //TODO: Replace with function call to retrieve the representative icon of a note
         if(note.getReminderTime()!=null){
             vhNote.imgReminder.setImageResource(R.drawable.ic_reminder);
         }
@@ -70,6 +71,7 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         ArrayList<String> tags = new ArrayList<>();
         tags.addAll(Arrays.asList(context.getResources().getStringArray(R.array.tags_example)));
 
+        // TODO: Replace tags with the strings from the actual TAG data type
         loadStringsToTextViewToFlexBox(tags, vhNote.flexboxLayout);
 
         vhNote.data = note;
@@ -86,26 +88,27 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                   context.getResources().getDimensionPixelSize(R.dimen.chip_right_margin),
                                   context.getResources().getDimensionPixelSize(R.dimen.chip_bottom_margin));
 
-        for(int i=0; i <= NUMBER_OF_TAG_ON_A_LINE ; i++){
+        for(int i=0; i < tags.size() ; i++) {
             String tagName = tags.get(i);
             TextView txtThisTag = new TextView(context);
             txtThisTag.setLayoutParams(flexBoxParams);
 
-            if(i!=NUMBER_OF_TAG_ON_A_LINE) {
+            if (i < NUMBER_OF_TAG_ON_A_LINE) {
 
                 txtThisTag.setText(tagName);
 
-            }else{ // the last tag displays how many tags are left
-
-                txtThisTag.setText((tags.size() >= NUMBER_OF_TAG_ON_A_LINE
-                                        ? tags.size() - NUMBER_OF_TAG_ON_A_LINE
-                                        : tags.size()) + context.getString(R.string.plusSign));
+            if(i == NUMBER_OF_TAG_ON_A_LINE){   // If it's overflow a line,display a single tag to tell how much is left
+                                                // and break out of the loop
+                txtThisTag.setText( (tags.size() - NUMBER_OF_TAG_ON_A_LINE)
+                              + context.getString(R.string.plusSign));
+                break;
             }
+        }
+
 
             txtThisTag.setBackgroundColor(context.getColor(R.color.gray));
             txtThisTag.setTextColor(Color.BLACK);
             txtThisTag.setTextSize( TypedValue.COMPLEX_UNIT_PX, context.getResources().getDimension(R.dimen.chip_text_size));
-
 
             txtThisTag.setPadding(  context.getResources().getDimensionPixelSize(R.dimen.chip_left_padding),
                                     context.getResources().getDimensionPixelSize(R.dimen.chip_top_padding),
