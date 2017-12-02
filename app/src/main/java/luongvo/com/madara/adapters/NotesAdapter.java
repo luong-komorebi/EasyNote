@@ -96,15 +96,11 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             if (i < NUMBER_OF_TAG_ON_A_LINE) {
 
                 txtThisTag.setText(tagName);
-
+            }
             if(i == NUMBER_OF_TAG_ON_A_LINE){   // If it's overflow a line,display a single tag to tell how much is left
-                                                // and break out of the loop
                 txtThisTag.setText( (tags.size() - NUMBER_OF_TAG_ON_A_LINE)
                               + context.getString(R.string.plusSign));
-                break;
             }
-        }
-
 
             txtThisTag.setBackgroundColor(context.getColor(R.color.gray));
             txtThisTag.setTextColor(Color.BLACK);
@@ -116,6 +112,10 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                     context.getResources().getDimensionPixelSize(R.dimen.chip_bottom_padding));
 
             flexboxLayout.addView(txtThisTag);
+
+            if(i == NUMBER_OF_TAG_ON_A_LINE) {  // break out of the loop if we are at the expanding tag
+                break;
+            }
         }
 
     }
