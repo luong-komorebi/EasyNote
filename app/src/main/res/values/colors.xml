@@ -3,7 +3,6 @@
     <color name="colorPrimary">#4CAF50</color>
     <color name="colorPrimaryDark">#2E7D32</color>
     <color name="colorAccent">#2E7D32</color>
-
     <color name="burntSienna">#EF5350</color>
     <color name="frenchRose">#EC407A</color>
     <color name="amethyst">#AB47BC</color>
@@ -23,5 +22,11 @@
     <color name="cement">#8D6E63</color>
     <color name="silver">#BDBDBD</color>
     <color name="regentGray">#78909C</color>
-
+    <color name="colorDivider">#CCC</color>
+    <color name="colorIcons">#FFF</color>
+    <color name="colorNoteBackground">#FFF</color>
+    <color name="chipBackgroundColor">#FBC02D</color>
+    <color name="chipLabelColor">#000000</color>
+    <color name="gray">#BDBDBD</color>
+    <color name="blue_ish">#8991c7</color>
 </resources>
