@@ -1,6 +1,7 @@
 package luongvo.com.madara.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
@@ -17,9 +18,11 @@ import com.google.android.flexbox.JustifyContent;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import luongvo.com.madara.EditorActivityNew;
 import luongvo.com.madara.R;
 import luongvo.com.madara.libs.SwipeToAction;
 import luongvo.com.madara.model.NoteCuaThanh;
+import luongvo.com.madara.utils.Constants;
 
 
 /**
@@ -47,8 +50,15 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        NoteCuaThanh note = arrNotes.get(position);
+        final NoteCuaThanh note = arrNotes.get(position);
         NoteViewHolder vhNote = (NoteViewHolder) holder;
+
+        vhNote.flexboxLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startEditor(note.getId());
+            }
+        });
 
         // Adjust flexBoxLayout's alignment
         vhNote.flexboxLayout.setJustifyContent(JustifyContent.FLEX_END);
@@ -76,6 +86,12 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         vhNote.data = note;
 
+    }
+
+    private void startEditor(String id) {
+        Intent editNote = new Intent(context, EditorActivityNew.class);
+        editNote.putExtra(Constants.intentNoteId, id);
+        context.startActivity(editNote);
     }
 
     private void loadStringsToTextViewToFlexBox(ArrayList<String> tags, FlexboxLayout flexboxLayout){

@@ -18,4 +18,5 @@ public class Constants {
     public static final int maxTxtQuickNoteContentMaxLines = 10;
 
     public static final String intentQuickNoteId = "intentQuickNoteId";
+    public static final String intentNoteId = "intentNoteId";
 }

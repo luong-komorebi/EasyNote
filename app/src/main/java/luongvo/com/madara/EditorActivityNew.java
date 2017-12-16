@@ -21,6 +21,10 @@ import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 
+import luongvo.com.madara.database.DBHelper;
+import luongvo.com.madara.model.NoteCuaThanh;
+import luongvo.com.madara.utils.Constants;
+
 
 /**
  * Created by Thanh on 12/11/2017.
@@ -35,10 +39,20 @@ public class EditorActivityNew extends AppCompatActivity {
     private EditText subjectEditTxt;
     private String tempImageURL;
 
+    private NoteCuaThanh note;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_activity_editor);
+
+        String noteId = getIntent().getStringExtra(Constants.intentNoteId);
+        if (noteId != null) {
+            note = DBHelper.getNote(noteId);
+        }
+        else {
+          note = new NoteCuaThanh("", "", null);
+        }
 
         subjectEditTxt = findViewById(R.id.subject);
         addEditor();
@@ -52,12 +66,14 @@ public class EditorActivityNew extends AppCompatActivity {
             public void onClick(View view) {
 
                 String noteSubject = String.valueOf(subjectEditTxt.getText());
+                String content = editor.getContentAsHTML();
                 if(noteSubject.equals("")){
 
                     Toast.makeText(getApplicationContext(), getString(R.string.subject_require_str), Toast.LENGTH_SHORT).show();
 
                 }else{
                     //TODO: Save note to database here
+                    DBHelper.saveNote(note, noteSubject, content, null);
                 }
             }
         });
@@ -145,9 +161,10 @@ public class EditorActivityNew extends AppCompatActivity {
         addStyleButton();
 
         //TODO: Populate html data here in case of editting - call render with HtmlString argument
-
+        subjectEditTxt.setText(note.getName());
+        editor.render(note.getContent());
         // In case the user is making a new note
-        editor.render();
+        //editor.render();
 
     }
 
