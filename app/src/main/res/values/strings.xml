@@ -30,4 +30,8 @@
     <string name="reminderDateStr">Remind date:</string>
     <string name="shrinkString">X</string>
     <string name="plusSign">+</string>
+	    <string name="note_subject_str">title</string>
+    <string name="subject_require_str">Title must not be empty</string>
+    <string name="editorTextHint">Input text here ...</string>
+    <string name="doubleClickToExit_str">Click BACK again to escape</string>
 </resources>

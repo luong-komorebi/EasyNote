@@ -2,6 +2,7 @@ package luongvo.com.madara;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -62,7 +63,8 @@ public class NotebooksActivity extends AppCompatActivity
             public void onClick(View view) {
                 menuMain.close(true);
                 // TODO: action add new Text NoteCuaThanh
-                // Do anything after here
+                Intent intent = new Intent(NotebooksActivity.this, EditorActivityNew.class);
+                startActivity(intent);
             }
         });
         menuAddAudioNote.setOnClickListener(new View.OnClickListener() {

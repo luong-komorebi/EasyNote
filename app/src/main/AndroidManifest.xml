@@ -28,6 +28,7 @@
             android:name=".AddNewPatternActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".EditorActivityNew"/>
     </application>
 
 </manifest>
