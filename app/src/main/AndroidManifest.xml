@@ -22,13 +22,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".NotebooksActivity"/>
+        <activity android:name=".NotebooksActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".AddNewPatternActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".EditorActivityNew"/>
+        <activity android:name=".QuickNoteEditorActivity"
+            android:theme="@style/Theme.AppCompat.Light">
+        </activity>
     </application>
 
 </manifest>

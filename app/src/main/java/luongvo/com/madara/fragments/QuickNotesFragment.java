@@ -97,10 +97,7 @@ public class QuickNotesFragment extends Fragment {
     }
 
     private void setupRvQuickNotes() {
-        // TODO: Replace example ArrayList with real data list
-        arrQuickNotes = new ArrayList<>();
         arrQuickNotes = DBHelper.getQuickNotes();
-
         quickNotesAdapter = new QuickNotesAdapter(getContext(), arrQuickNotes);
 
         RecyclerView.LayoutManager layoutManager =

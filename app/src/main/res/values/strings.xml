@@ -34,4 +34,32 @@
     <string name="subject_require_str">Title must not be empty</string>
     <string name="editorTextHint">Input text here ...</string>
     <string name="doubleClickToExit_str">Click BACK again to escape</string>
+
+    <string name="title">Title</string>
+    <string name="note">Note</string>
+    <string name="delete">Delete</string>
+    <string name="change_color">Change color</string>
+
+    <string-array name="colors">
+        <item>white</item>
+        <item>burntSienna</item>
+        <item>frenchRose</item>
+        <item>amethyst</item>
+        <item>fuchsiaBlue</item>
+        <item>indigo</item>
+        <item>pictonBlue</item>
+        <item>scooter</item>
+        <item>jungleGreen</item>
+        <item>fern</item>
+        <item>celery</item>
+        <item>wattle</item>
+        <item>gorse</item>
+        <item>sunglow</item>
+        <item>sunshade</item>
+        <item>burningOrange</item>
+        <item>cement</item>
+        <item>silver</item>
+        <item>regentGray</item>
+    </string-array>
+
 </resources>

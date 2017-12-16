@@ -98,13 +98,7 @@ public class AllNotesFragment extends Fragment {
 
     private void setUpRvNotes() {
 
-        // TODO: Replace example ArrayList with real data list
         arrNotes = new ArrayList<>();
-        /*arrNotes.add(new NoteCuaThanh(getString(R.string.title_example), getString(R.string.content_example), null));
-        arrNotes.add(new NoteCuaThanh(getString(R.string.title_example), getString(R.string.content_example), null));
-        arrNotes.add(new NoteCuaThanh(getString(R.string.title_example), getString(R.string.content_example), null));
-        arrNotes.add(new NoteCuaThanh(getString(R.string.title_example), getString(R.string.content_example), null));
-        arrNotes.add(new NoteCuaThanh(getString(R.string.title_example), getString(R.string.content_example), null));*/
 
         String[] notebookIDs = DBHelper.getNotebooksID();
         System.out.println(notebookIDs[0]);

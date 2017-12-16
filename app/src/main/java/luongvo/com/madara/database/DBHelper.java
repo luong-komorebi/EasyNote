@@ -27,7 +27,6 @@ import java.util.List;
         List<Notebook> notebooks = DBHelper.getNotebooks();
         List<NoteCuaThanh> notes = DBHelper.getNotes(notebooks.get(1).getId());
         DBHelper.close();
-
  */
 
 public class DBHelper {
@@ -109,6 +108,10 @@ public class DBHelper {
         }
     }
 
+    public static QuickNote getQuickNote(String id) {
+        return new QuickNote(id, db);
+    }
+
     // Get all notebook's names for searching
     // Pair<notebook_id, name>
     public List<Pair<String, String>> getAllNotebookNames() {
@@ -165,18 +168,18 @@ public class DBHelper {
 
     // Get all available tag for querying and searching
     public List<String> getAllTags() {
-    	try {
-    		List<String> res = new ArrayList<>();
-    		String[] keys = db.findKeys(DBSchema.TAG_PREFIX);
+        try {
+            List<String> res = new ArrayList<>();
+            String[] keys = db.findKeys(DBSchema.TAG_PREFIX);
 
-    		for (String tmp : keys) {
-    			res.add(tmp.substring(7, tmp.length()));
-    		}
-    		return res;
-    	} catch (SnappydbException e) {
-    		e.printStackTrace();
-    		return null;
-    	}
+            for (String tmp : keys) {
+                res.add(tmp.substring(7, tmp.length()));
+            }
+            return res;
+        } catch (SnappydbException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     // In NoteCuaThanh edit activity
@@ -192,6 +195,16 @@ public class DBHelper {
     	note.update(name, content, tags);
     	note.write(db);
     }
+
+    // Delete a notebook
+
+    public static void saveQuickNote(QuickNote quickNote, String title, String content, String color) {
+        quickNote.setTitle(title);
+        quickNote.setContent(content);
+        quickNote.setColor(color);
+        quickNote.write(db);
+    }
+
 
     // Delete a note
     public void deleteNote(NoteCuaThanh note) {
@@ -243,11 +256,7 @@ public class DBHelper {
             madara.write(db);
 
             noteIds.add(delNote.getId());
-            Notebook firstNB = new Notebook(
-                "My First Notebook My First Notebook My First Notebook",
-                R.drawable.notebook_cover_8, "",
-                noteIds
-            );
+            Notebook firstNB = new Notebook("My First Notebook", R.drawable.notebook_cover_8, "", noteIds);
             firstNB.write(db);
 
             List<String> firstBelongTo = new ArrayList<>();
@@ -258,8 +267,8 @@ public class DBHelper {
             db.put(DBSchema.TRASH_NOTES, new String[]{delNote.getId()});
 
             QuickNote quickNote1 = new QuickNote("Quick note 1", "Quick note 1");
-            QuickNote quickNote2 = new QuickNote("Quick note 2", "Quick note 2 Quick note 2", R.color.celery);
-            QuickNote quickNote3 = new QuickNote("Quick note 3", "Quick note 3 Quick note 3 Quick note 3", R.color.pomegranate);
+            QuickNote quickNote2 = new QuickNote("Quick note 2", "Quick note 2 Quick note 2", "celery");
+            QuickNote quickNote3 = new QuickNote("Quick note 3", "Quick note 3 Quick note 3 Quick note 3", "pomegranate");
             quickNote1.write(db);
             quickNote2.write(db);
             quickNote3.write(db);

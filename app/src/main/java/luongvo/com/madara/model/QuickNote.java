@@ -22,15 +22,15 @@ public class QuickNote {
     private String id;
 
     // Color Id for CardView background
-    private int colorId;
+    private String color;
 
     // Number of lines of content to be showed
     private int maxLines;
 
-    private QuickNote() {
-        id = UUID.randomUUID().toString();
 
-        this.colorId = R.color.white;
+    public QuickNote() {
+        id = UUID.randomUUID().toString();
+        this.color = "white";
         this.maxLines = new Random().nextInt((max - min) + 1) + min;
     }
 
@@ -40,16 +40,17 @@ public class QuickNote {
         this.content = content;
     }
 
-    public QuickNote(String title, String content, int colorId) {
+    public QuickNote(String title, String content, String color) {
         this(title, content);
-        this.colorId = colorId;
+        this.color = color;
     }
 
     public QuickNote(String id, DB db) {
         try {
+            this.id = id;
             this.title = db.get(DBSchema.QUICKNOTE_SEARCH + id);
             this.content = db.get(DBSchema.QUICKNOTE_CONTENT + id);
-            this.colorId = db.getInt(DBSchema.QUICKNOTE_COLOR + id);
+            this.color = db.get(DBSchema.QUICKNOTE_COLOR + id);
             this.maxLines = new Random().nextInt((max - min) + 1) + min;
         } catch (SnappydbException e) {
             e.printStackTrace();
@@ -60,7 +61,7 @@ public class QuickNote {
         try {
             db.put(DBSchema.QUICKNOTE_SEARCH + id, title);
             db.put(DBSchema.QUICKNOTE_CONTENT + id, content);
-            db.putInt(DBSchema.QUICKNOTE_COLOR + id, colorId);
+            db.put(DBSchema.QUICKNOTE_COLOR + id, color);
 
         } catch (SnappydbException e) {
             e.printStackTrace();
@@ -83,12 +84,12 @@ public class QuickNote {
         this.content = content;
     }
 
-    public int getColorId() {
-        return colorId;
+    public String getColor() {
+        return color;
     }
 
-    public void setColorId(int colorId) {
-        this.colorId = colorId;
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public int getMaxLines() {
@@ -97,5 +98,9 @@ public class QuickNote {
 
     public void setMaxLines(int maxLines) {
         this.maxLines = maxLines;
+    }
+
+    public String getId() {
+        return id;
     }
 }
