@@ -6,6 +6,7 @@ import android.util.Pair;
 import luongvo.com.madara.R;
 import luongvo.com.madara.model.NoteCuaThanh;
 import luongvo.com.madara.model.Notebook;
+import luongvo.com.madara.model.QuickNote;
 import luongvo.com.madara.model.Tag;
 import com.snappydb.DB;
 import com.snappydb.DBFactory;
@@ -84,6 +85,22 @@ public class DBHelper {
             String[] noteIds = db.getArray(notebookId + DBSchema.NOTEBOOK_NOTE_IDS, String.class);
             for (String tmp : noteIds) {
                 res.add(new NoteCuaThanh(tmp, db));
+            }
+            return res;
+        } catch (SnappydbException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static List<QuickNote> getQuickNotes() {
+        List<QuickNote> res = new ArrayList<>();
+        try {
+            String[] keys = db.findKeys(DBSchema.QUICKNOTE_SEARCH);
+            String tmp;
+            for (int i = 0; i < keys.length; ++i) {
+                tmp = keys[i].substring(DBSchema.QUICKNOTE_SEARCH.length(), keys[i].length());
+                res.add(new QuickNote(tmp, db));
             }
             return res;
         } catch (SnappydbException e) {
@@ -176,6 +193,38 @@ public class DBHelper {
     	note.write(db);
     }
 
+    // Delete a note
+    public void deleteNote(Note note) {
+        note.delete();
+        note.write(db);
+    }
+
+    // Create/save new notebook
+    // Similar to saveNote
+    public void saveNotebook(Notebook notebook, String name, int cover, String password) {
+        notebook.update(name, cover, password);
+        notebook.write(db);
+    }
+
+    // Delete a notebook
+    public void deleteNotebook(Notebook notebook) {
+        notebook.delete();
+        notebook.write(db);
+        deleteRelatedNotes(notebook);
+    }
+
+    // Delete all related notes
+    private void deleteRelatedNotes(Notebook notebook) {
+        List<String> noteIds = notebook.getNoteIds();
+        try {
+            for (String tmp : noteIds) {
+                db.put(tmp + DBSchema.NOTE_DELETED, Calendar.getInstance());
+            }
+        } catch (SnappydbException e) {
+            e.printStackTrace();
+        }
+    }
+
     private static void createSampleData() {
         try {
             List<String> tags = new ArrayList<>();
@@ -194,7 +243,6 @@ public class DBHelper {
             madara.write(db);
 
             noteIds.add(delNote.getId());
-
             Notebook firstNB = new Notebook(
                 "My First Notebook My First Notebook My First Notebook",
                 R.drawable.notebook_cover_8, "",
@@ -208,6 +256,13 @@ public class DBHelper {
             firstTag.write(db);
             db.put(DBSchema.NOTEBOOK_IDS, new String[]{madara.getId(), firstNB.getId()});
             db.put(DBSchema.TRASH_NOTES, new String[]{delNote.getId()});
+
+            QuickNote quickNote1 = new QuickNote("Quick note 1", "Quick note 1");
+            QuickNote quickNote2 = new QuickNote("Quick note 2", "Quick note 2 Quick note 2", R.color.celery);
+            QuickNote quickNote3 = new QuickNote("Quick note 3", "Quick note 3 Quick note 3 Quick note 3", R.color.pomegranate);
+            quickNote1.write(db);
+            quickNote2.write(db);
+            quickNote3.write(db);
         } catch (SnappydbException e) {
             e.printStackTrace();
         }

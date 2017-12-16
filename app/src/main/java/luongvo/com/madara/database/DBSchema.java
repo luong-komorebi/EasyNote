@@ -26,6 +26,10 @@ public class DBSchema {
     public static final String NOTE_UPDATED = KEY_SEPARATOR + "updated";
     public static final String NOTE_TAGS = KEY_SEPARATOR + "tags";
 
+    public static final String QUICKNOTE_SEARCH = "quicknote" + KEY_SEPARATOR;
+    public static final String QUICKNOTE_CONTENT = "content_quicknote" + KEY_SEPARATOR;
+    public static final String QUICKNOTE_COLOR = "color_quicknote" + KEY_SEPARATOR;
+
     public static final String TAG_PREFIX = "tag" + KEY_SEPARATOR;
 
     private static final String TRASH_PREFIX = "trash";

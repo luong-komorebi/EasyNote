@@ -22,6 +22,7 @@ import java.util.List;
 import luongvo.com.madara.R;
 import luongvo.com.madara.adapters.NotebooksAdapter;
 import luongvo.com.madara.adapters.QuickNotesAdapter;
+import luongvo.com.madara.database.DBHelper;
 import luongvo.com.madara.helper.ItemTouchHelperCallback;
 import luongvo.com.madara.model.QuickNote;
 import luongvo.com.madara.utils.Constants;
@@ -98,10 +99,7 @@ public class QuickNotesFragment extends Fragment {
     private void setupRvQuickNotes() {
         // TODO: Replace example ArrayList with real data list
         arrQuickNotes = new ArrayList<>();
-        arrQuickNotes.add(new QuickNote("NoteCuaThanh 1", "Content of NoteCuaThanh 1"));
-        arrQuickNotes.add(new QuickNote("NoteCuaThanh 2", "Content of NoteCuaThanh 2 Content of NoteCuaThanh 2", R.color.celery));
-        arrQuickNotes.add(new QuickNote("NoteCuaThanh 3", "Content of NoteCuaThanh 3 Content of NoteCuaThanh 3 Content of NoteCuaThanh 3", R.color.pomegranate));
-        arrQuickNotes.add(new QuickNote("NoteCuaThanh 4", "Content of NoteCuaThanh 4 Content of NoteCuaThanh 4 ", R.color.pomegranate));
+        arrQuickNotes = DBHelper.getQuickNotes();
 
         quickNotesAdapter = new QuickNotesAdapter(getContext(), arrQuickNotes);
 
