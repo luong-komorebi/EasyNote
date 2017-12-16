@@ -194,7 +194,7 @@ public class DBHelper {
     }
 
     // Delete a note
-    public void deleteNote(Note note) {
+    public void deleteNote(NoteCuaThanh note) {
         note.delete();
         note.write(db);
     }
