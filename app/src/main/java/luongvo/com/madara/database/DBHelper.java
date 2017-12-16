@@ -198,6 +198,10 @@ public class DBHelper {
         }
     }
 
+    public static NoteCuaThanh getNote(String id) {
+        return new NoteCuaThanh(id, db);
+    }
+
     // In NoteCuaThanh edit activity
 		/*
 		if (newnote) {
@@ -207,7 +211,7 @@ public class DBHelper {
     	}
 		press save button -> call saveNote (pass created note)
     	*/
-    public void saveNote(NoteCuaThanh note, String name, String content, List<String> tags) {
+    public static void saveNote(NoteCuaThanh note, String name, String content, List<String> tags) {
     	note.update(name, content, tags);
     	note.write(db);
     }
@@ -258,10 +262,10 @@ public class DBHelper {
         try {
             List<String> tags = new ArrayList<>();
             tags.add("first");
-            NoteCuaThanh firstNote = new NoteCuaThanh("My First NoteCuaThanh", "This is my very first note!", tags);
+            NoteCuaThanh firstNote = new NoteCuaThanh("My First NoteCuaThanh", "<p data-tag=\"input\">This is my very first note!</p>", tags);
             firstNote.write(db);
 
-            NoteCuaThanh delNote = new NoteCuaThanh("Deleted NoteCuaThanh", "An example of a deleted note.", null);
+            NoteCuaThanh delNote = new NoteCuaThanh("Deleted NoteCuaThanh", "<p data-tag=\"input\">An example of a deleted note.</p>", null);
             delNote.delete();
             delNote.write(db);
 
