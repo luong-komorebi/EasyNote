@@ -4,8 +4,6 @@ import android.util.Pair;
 
 import luongvo.com.madara.database.DBHelper;
 import luongvo.com.madara.database.DBSchema;
-import luongvo.com.madara.model.Note;
-import luongvo.com.madara.model.Notebook;
 
 import com.snappydb.DB;
 

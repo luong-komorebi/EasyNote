@@ -57,7 +57,7 @@ public class QuickNotesAdapter extends RecyclerView.Adapter<QuickNotesAdapter.Qu
         quickNoteViewHolder.layoutQuickNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: Open Quick Note
+                // TODO: Open Quick NoteCuaThanh
             }
         });
     }

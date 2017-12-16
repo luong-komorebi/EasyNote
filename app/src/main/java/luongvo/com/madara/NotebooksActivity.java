@@ -61,7 +61,7 @@ public class NotebooksActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 menuMain.close(true);
-                // TODO: action add new Text Note
+                // TODO: action add new Text NoteCuaThanh
                 // Do anything after here
             }
         });
@@ -69,7 +69,7 @@ public class NotebooksActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 menuMain.close(true);
-                // TODO: action add new Audio Note
+                // TODO: action add new Audio NoteCuaThanh
                 // Do anything after here
             }
         });

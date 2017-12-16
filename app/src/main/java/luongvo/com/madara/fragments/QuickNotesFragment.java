@@ -98,10 +98,10 @@ public class QuickNotesFragment extends Fragment {
     private void setupRvQuickNotes() {
         // TODO: Replace example ArrayList with real data list
         arrQuickNotes = new ArrayList<>();
-        arrQuickNotes.add(new QuickNote("Note 1", "Content of Note 1"));
-        arrQuickNotes.add(new QuickNote("Note 2", "Content of Note 2 Content of Note 2", R.color.celery));
-        arrQuickNotes.add(new QuickNote("Note 3", "Content of Note 3 Content of Note 3 Content of Note 3", R.color.pomegranate));
-        arrQuickNotes.add(new QuickNote("Note 4", "Content of Note 4 Content of Note 4 ", R.color.pomegranate));
+        arrQuickNotes.add(new QuickNote("NoteCuaThanh 1", "Content of NoteCuaThanh 1"));
+        arrQuickNotes.add(new QuickNote("NoteCuaThanh 2", "Content of NoteCuaThanh 2 Content of NoteCuaThanh 2", R.color.celery));
+        arrQuickNotes.add(new QuickNote("NoteCuaThanh 3", "Content of NoteCuaThanh 3 Content of NoteCuaThanh 3 Content of NoteCuaThanh 3", R.color.pomegranate));
+        arrQuickNotes.add(new QuickNote("NoteCuaThanh 4", "Content of NoteCuaThanh 4 Content of NoteCuaThanh 4 ", R.color.pomegranate));
 
         quickNotesAdapter = new QuickNotesAdapter(getContext(), arrQuickNotes);
 

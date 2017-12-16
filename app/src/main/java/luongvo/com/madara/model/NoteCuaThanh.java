@@ -16,7 +16,7 @@ import luongvo.com.madara.utils.ShortDate;
  * Created by luongvo on 03/12/2017.
  */
 
-public class NoteCuaTue {
+public class NoteCuaThanh {
     private String name;
     private String id;
     private String content;
@@ -29,7 +29,7 @@ public class NoteCuaTue {
 
     String reminderTime = "";
 
-    public NoteCuaTue(String name, String content, List<String> tags) {
+    public NoteCuaThanh(String name, String content, List<String> tags) {
         id = UUID.randomUUID().toString();
 
         created = Calendar.getInstance();
@@ -39,7 +39,7 @@ public class NoteCuaTue {
         update(name, content, tags);
     }
 
-    public NoteCuaTue(String id, DB db) {
+    public NoteCuaThanh(String id, DB db) {
         try {
             this.id = id;
 

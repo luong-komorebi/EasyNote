@@ -4,7 +4,6 @@ import android.app.Fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,9 +13,11 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import luongvo.com.madara.R;
+import luongvo.com.madara.database.DBHelper;
+import luongvo.com.madara.database.DBSchema;
 import luongvo.com.madara.libs.SwipeToAction;
 import luongvo.com.madara.adapters.NotesAdapter;
-import luongvo.com.madara.model.Note;
+import luongvo.com.madara.model.NoteCuaThanh;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,7 +38,7 @@ public class AllNotesFragment extends Fragment {
     private String mParam2;
 
     private View view;
-    private ArrayList<Note> arrNotes;
+    private ArrayList<NoteCuaThanh> arrNotes;
     private RecyclerView rvNotes;
     private SwipeToAction staNotes;
     private NotesAdapter notesAdapter;
@@ -99,11 +100,18 @@ public class AllNotesFragment extends Fragment {
 
         // TODO: Replace example ArrayList with real data list
         arrNotes = new ArrayList<>();
-        arrNotes.add(new Note(0, getString(R.string.title_example), getString(R.string.content_example)));
-        arrNotes.add(new Note(1, getString(R.string.title_example), getString(R.string.content_example)));
-        arrNotes.add(new Note(2, getString(R.string.title_example), getString(R.string.content_example)));
-        arrNotes.add(new Note(3, getString(R.string.title_example), getString(R.string.content_example)));
-        arrNotes.add(new Note(4, getString(R.string.title_example), getString(R.string.content_example)));
+        /*arrNotes.add(new NoteCuaThanh(getString(R.string.title_example), getString(R.string.content_example), null));
+        arrNotes.add(new NoteCuaThanh(getString(R.string.title_example), getString(R.string.content_example), null));
+        arrNotes.add(new NoteCuaThanh(getString(R.string.title_example), getString(R.string.content_example), null));
+        arrNotes.add(new NoteCuaThanh(getString(R.string.title_example), getString(R.string.content_example), null));
+        arrNotes.add(new NoteCuaThanh(getString(R.string.title_example), getString(R.string.content_example), null));*/
+
+        String[] notebookIDs = DBHelper.getNotebooksID();
+        System.out.println(notebookIDs[0]);
+        for (String tmp : notebookIDs) {
+            System.out.println(tmp);
+            arrNotes.addAll((ArrayList) DBHelper.getNotes(tmp));
+        }
 
         notesAdapter = new NotesAdapter(getActivity(), this.arrNotes);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());

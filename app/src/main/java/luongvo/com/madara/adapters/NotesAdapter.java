@@ -19,7 +19,7 @@ import java.util.Arrays;
 
 import luongvo.com.madara.R;
 import luongvo.com.madara.libs.SwipeToAction;
-import luongvo.com.madara.model.Note;
+import luongvo.com.madara.model.NoteCuaThanh;
 
 
 /**
@@ -30,11 +30,11 @@ import luongvo.com.madara.model.Note;
 public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context context;
-    private ArrayList<Note> arrNotes;
+    private ArrayList<NoteCuaThanh> arrNotes;
     private int NUMBER_OF_TAG_ON_A_LINE = 4;
 
 
-    public NotesAdapter(Context context, ArrayList<Note> arrNotes) {
+    public NotesAdapter(Context context, ArrayList<NoteCuaThanh> arrNotes) {
         this.context = context;
         this.arrNotes = arrNotes;
     }
@@ -47,7 +47,7 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        Note note = arrNotes.get(position);
+        NoteCuaThanh note = arrNotes.get(position);
         NoteViewHolder vhNote = (NoteViewHolder) holder;
 
         // Adjust flexBoxLayout's alignment
@@ -56,7 +56,7 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         vhNote.flexboxLayout.setFlexDirection(FlexDirection.ROW);
 
         // Set values for a note
-        vhNote.txtNoteTitle.setText(note.getTitle());
+        vhNote.txtNoteTitle.setText(note.getName());
         vhNote.txtNoteTimeStamp.setText(note.getTimeStamp());
         vhNote.txtNoteDescription.setText(note.getContent());
         vhNote.imgNoteIcon.setImageResource(R.drawable.ic_note);
@@ -124,7 +124,7 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         return arrNotes.size();
     }
 
-    public class NoteViewHolder extends SwipeToAction.ViewHolder<Note> {
+    public class NoteViewHolder extends SwipeToAction.ViewHolder<NoteCuaThanh> {
         private TextView txtNoteTitle;
         private TextView txtNoteTimeStamp;
         private TextView txtNoteDescription;
