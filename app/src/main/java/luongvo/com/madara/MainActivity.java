@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void toNotebooks() {
         Intent intent = new Intent(MainActivity.this, NotebooksActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 

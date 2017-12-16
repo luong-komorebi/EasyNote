@@ -284,7 +284,7 @@ public class DBHelper {
 
             QuickNote quickNote1 = new QuickNote("Quick note 1", "Quick note 1");
             QuickNote quickNote2 = new QuickNote("Quick note 2", "Quick note 2 Quick note 2", "celery");
-            QuickNote quickNote3 = new QuickNote("Quick note 3", "Quick note 3 Quick note 3 Quick note 3", "pomegranate");
+            QuickNote quickNote3 = new QuickNote("Quick note 3", "Quick note 3 Quick note 3 Quick note 3", "scooter");
             quickNote1.write(db);
             quickNote2.write(db);
             quickNote3.write(db);

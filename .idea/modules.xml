@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/EasyNote.iml" filepath="$PROJECT_DIR$/EasyNote.iml" />
+      <module fileurl="file://D:\Projects\CS 300 - Software Engineering\Madara\EasyNote.iml" filepath="D:\Projects\CS 300 - Software Engineering\Madara\EasyNote.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Madara.iml" filepath="$PROJECT_DIR$/Madara.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
