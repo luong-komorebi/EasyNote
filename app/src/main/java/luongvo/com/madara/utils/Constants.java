@@ -16,4 +16,6 @@ public class Constants {
     // Max & Min number of lines of txtQuickNoteContent
     public static final int minTxtQuickNoteContentMaxLines = 5;
     public static final int maxTxtQuickNoteContentMaxLines = 10;
+
+    public static final String intentQuickNoteId = "intentQuickNoteId";
 }

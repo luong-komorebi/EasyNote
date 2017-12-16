@@ -89,6 +89,16 @@
                 fab:fab_size="normal"
                 android:src="@drawable/ic_text_note" />
 
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/menuAddQuickNote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_colorNormal="@color/colorPrimary"
+                fab:fab_colorPressed="@color/colorPrimary"
+                fab:fab_label="Quick Note"
+                fab:fab_size="normal"
+                android:src="@drawable/ic_quick_note" />
+
         </com.github.clans.fab.FloatingActionMenu>
     </RelativeLayout>
 

@@ -21,7 +21,7 @@
             android:padding="5dp"
             android:text="@string/untitled"
             android:textColor="@android:color/black"
-            android:textSize="18sp"
+            android:textSize="19sp"
             android:textStyle="bold" />
 
         <TextView

@@ -34,7 +34,6 @@ public class UnlockAppActivity extends AppCompatActivity {
         Intent mainActivityIntent = new Intent(this, MainActivity.class);
 
         // Those flags below make MainActivity CAN'T go backward to UnlockAppActivity when pressing Back button
-
         mainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(mainActivityIntent);
     }
@@ -62,6 +61,7 @@ public class UnlockAppActivity extends AppCompatActivity {
             public void onComplete(List<PatternLockView.Dot> pattern) {
                 String inputLockPattern = PatternLockUtils.patternToSha1(plvLockApp, pattern);
                 if (inputLockPattern.equals(definedLockPattern)) {
+                    plvLockApp.setViewMode(PatternLockView.PatternViewMode.CORRECT);
                     onSuccessAuthenticate();
                 } else {
                     plvLockApp.setViewMode(PatternLockView.PatternViewMode.WRONG);
@@ -70,7 +70,7 @@ public class UnlockAppActivity extends AppCompatActivity {
 
             @Override
             public void onCleared() {
-                plvLockApp.setViewMode(PatternLockView.PatternViewMode.AUTO_DRAW);
+
             }
         });
     }

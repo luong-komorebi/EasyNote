@@ -14,4 +14,30 @@
     <string name="text_view_confirm_pattern">Confirm your pattern</string>
     <string name="toast_confirm_new_pattern_failed">Your confirmation pattern does not match. Please try again</string>
     <string name="toast_success">Success</string>
+    <string name="title">Title</string>
+    <string name="note">Note</string>
+    <string name="delete">Delete</string>
+    <string name="change_color">Change color</string>
+
+    <string-array name="colors">
+        <item>white</item>
+        <item>burntSienna</item>
+        <item>frenchRose</item>
+        <item>amethyst</item>
+        <item>fuchsiaBlue</item>
+        <item>indigo</item>
+        <item>pictonBlue</item>
+        <item>scooter</item>
+        <item>jungleGreen</item>
+        <item>fern</item>
+        <item>celery</item>
+        <item>wattle</item>
+        <item>gorse</item>
+        <item>sunglow</item>
+        <item>sunshade</item>
+        <item>burningOrange</item>
+        <item>cement</item>
+        <item>silver</item>
+        <item>regentGray</item>
+    </string-array>
 </resources>

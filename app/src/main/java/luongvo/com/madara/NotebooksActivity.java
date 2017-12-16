@@ -2,6 +2,7 @@ package luongvo.com.madara;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +22,8 @@ import luongvo.com.madara.fragments.AllNotesFragment;
 import luongvo.com.madara.fragments.NotebooksFragment;
 import luongvo.com.madara.fragments.QuickNotesFragment;
 import luongvo.com.madara.fragments.SettingsFragment;
+import luongvo.com.madara.model.Note;
+import luongvo.com.madara.utils.Constants;
 
 public class NotebooksActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -34,7 +37,7 @@ public class NotebooksActivity extends AppCompatActivity
 
     private int currentFragmentId;
     private FloatingActionMenu menuMain;
-    private FloatingActionButton menuAddTextNote, menuAddAudioNote;
+    private FloatingActionButton menuAddTextNote, menuAddAudioNote, menuAddQuickNote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,7 @@ public class NotebooksActivity extends AppCompatActivity
         menuMain = findViewById(R.id.menuMain);
         menuAddTextNote = findViewById(R.id.menuAddTextNote);
         menuAddAudioNote = findViewById(R.id.menuAddAudioNote);
+        menuAddQuickNote = findViewById(R.id.menuAddQuickNote);
     }
 
     private void addEvents() {
@@ -71,6 +75,13 @@ public class NotebooksActivity extends AppCompatActivity
                 menuMain.close(true);
                 // TODO: action add new Audio Note
                 // Do anything after here
+            }
+        });
+        menuAddQuickNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent quickNoteEditor = new Intent(NotebooksActivity.this, QuickNoteEditorActivity.class);
+                startActivity(quickNoteEditor);
             }
         });
     }

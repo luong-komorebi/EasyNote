@@ -85,6 +85,12 @@ public class Notebook {
         }
     }
 
+    public void update(String name, int cover, String password) {
+        this.name = name;
+        this.cover = cover;
+        this.password = password;
+    }
+
     public void delete() {
         deleted = Calendar.getInstance();
     }
@@ -103,5 +109,9 @@ public class Notebook {
 
     public int getCover() {
         return cover;
+    }
+
+    public List<String> getNoteIds() {
+        return noteIds;
     }
 }

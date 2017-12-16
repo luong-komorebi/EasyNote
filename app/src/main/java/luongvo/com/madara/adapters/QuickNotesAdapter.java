@@ -1,6 +1,7 @@
 package luongvo.com.madara.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,10 +18,12 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.List;
 
+import luongvo.com.madara.QuickNoteEditorActivity;
 import luongvo.com.madara.R;
 import luongvo.com.madara.helper.ItemTouchHelperAdapter;
 import luongvo.com.madara.model.Notebook;
 import luongvo.com.madara.model.QuickNote;
+import luongvo.com.madara.utils.Constants;
 
 
 public class QuickNotesAdapter extends RecyclerView.Adapter<QuickNotesAdapter.QuickNoteViewHolder>
@@ -43,7 +46,7 @@ public class QuickNotesAdapter extends RecyclerView.Adapter<QuickNotesAdapter.Qu
 
     @Override
     public void onBindViewHolder(final QuickNoteViewHolder quickNoteViewHolder, int position) {
-        QuickNote quickNoteResources = arrQuickNotes.get(position);
+        final QuickNote quickNoteResources = arrQuickNotes.get(position);
 
         // TODO: quickNoteResources - onBindViewHolder - please notice the binding process
         // Add resources to QuickNoteViewHolder's elements
@@ -51,13 +54,18 @@ public class QuickNotesAdapter extends RecyclerView.Adapter<QuickNotesAdapter.Qu
         quickNoteViewHolder.txtQuickNoteContent.setText(quickNoteResources.getContent());
         quickNoteViewHolder.txtQuickNoteContent.setMaxLines(quickNoteResources.getMaxLines());
         quickNoteViewHolder.layoutQuickNote
-            .setCardBackgroundColor(context.getColor(quickNoteResources.getColorId()));
+            .setCardBackgroundColor(context
+            .getColor(context
+            .getResources()
+            .getIdentifier(quickNoteResources.getColor(), "color", context.getPackageName())));
 
         // Add events to QuickNoteViewHolder's elements
         quickNoteViewHolder.layoutQuickNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: Open Quick Note
+                Intent quickNoteEditor = new Intent(context, QuickNoteEditorActivity.class);
+                quickNoteEditor.putExtra(Constants.intentQuickNoteId, quickNoteResources.getId());
+                context.startActivity(quickNoteEditor);
             }
         });
     }
