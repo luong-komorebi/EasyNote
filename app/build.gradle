@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "luongvo.com.madara"
         minSdkVersion 23
@@ -21,32 +21,12 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.github.pchmn:MaterialChipsInput:1.0.8'
-
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.1.0'
-
-    compile 'com.github.irshulx:laser-native-editor:2.1.0'
-    compile 'jp.wasabeef:richeditor-android:1.2.2'
-    compile 'com.google.android:flexbox:0.3.1'
-    compile 'net.danlew:android.joda:2.9.9.1'
-    compile 'co.dift.ui.swipetoaction:library:1.1'
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support:support-v4:26.+'
-    compile 'com.android.support:cardview-v7:26.+'
-    compile 'com.android.support:recyclerview-v7:26.+'
     compile 'com.android.support:design:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:support-v4:26.1.0'
-    compile 'com.android.support:design:26.1.0'
-    compile 'com.snappydb:snappydb-lib:0.5.2'
-    compile 'com.esotericsoftware.kryo:kryo:2.24.0'
-    compile 'com.android.support:cardview-v7:26.1.0'
-    compile 'com.android.support:recyclerview-v7:26.1.0'
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.github.clans:fab:1.6.4'
-    compile 'com.andrognito.patternlockview:patternlockview:1.0.0'
     testCompile 'junit:junit:4.12'
 }
