@@ -100,11 +100,17 @@ public class AllNotesFragment extends Fragment {
 
         arrNotes = new ArrayList<>();
 
-        String[] notebookIDs = DBHelper.getNotebooksID();
-        System.out.println(notebookIDs[0]);
+
+        String[] notebookIDs;
+        notebookIDs = DBHelper.getNotebooksID();
+
+        // System.out.println(notebookIDs[0]); // This line for testing cause the null array access
+
+
+        assert notebookIDs != null;
         for (String tmp : notebookIDs) {
             System.out.println(tmp);
-            arrNotes.addAll((ArrayList) DBHelper.getNotes(tmp));
+            arrNotes.addAll(DBHelper.getNotes(tmp));
         }
 
         notesAdapter = new NotesAdapter(getActivity(), this.arrNotes);

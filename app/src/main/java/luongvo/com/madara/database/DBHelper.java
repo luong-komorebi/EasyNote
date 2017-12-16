@@ -55,47 +55,55 @@ public class DBHelper {
     }
 
     public static List<Notebook> getNotebooks() {
+        List<Notebook> res = new ArrayList<>();
+        String[] notebookIds = new String[]{};
         try {
-            List<Notebook> res = new ArrayList<>();
-            String[] notebookIds = db.getArray(DBSchema.NOTEBOOK_IDS, String.class);
+
+            notebookIds = db.getArray(DBSchema.NOTEBOOK_IDS, String.class);
             for (String tmp : notebookIds) {
                 res.add(new Notebook(tmp, db));
             }
             return res;
         } catch (SnappydbException e) {
             e.printStackTrace();
-            return null;
+            return res;
         }
     }
 
     public static String[] getNotebooksID() {
+        // Move this line from inside to outside of the try_catch block
+        String[] notebookIds = new String[]{};
+
         try {
-            String[] notebookIds = db.getArray(DBSchema.NOTEBOOK_IDS, String.class);
+            notebookIds = db.getArray(DBSchema.NOTEBOOK_IDS, String.class);
             return notebookIds;
         } catch (SnappydbException e) {
             e.printStackTrace();
-            return null;
+            return notebookIds;  // don't return NULL - return something initialized object instead
         }
     }
 
     public static List<NoteCuaThanh> getNotes(String notebookId) {
+        List<NoteCuaThanh> res = new ArrayList<>();
+        String[] noteIds = new String[]{};
         try {
-            List<NoteCuaThanh> res = new ArrayList<>();
-            String[] noteIds = db.getArray(notebookId + DBSchema.NOTEBOOK_NOTE_IDS, String.class);
+            noteIds = db.getArray(notebookId + DBSchema.NOTEBOOK_NOTE_IDS, String.class);
             for (String tmp : noteIds) {
                 res.add(new NoteCuaThanh(tmp, db));
             }
             return res;
         } catch (SnappydbException e) {
             e.printStackTrace();
-            return null;
+            return res;
         }
     }
 
     public static List<QuickNote> getQuickNotes() {
         List<QuickNote> res = new ArrayList<>();
+        String[] keys = new String[]{};
+
         try {
-            String[] keys = db.findKeys(DBSchema.QUICKNOTE_SEARCH);
+            keys = db.findKeys(DBSchema.QUICKNOTE_SEARCH);
             String tmp;
             for (int i = 0; i < keys.length; ++i) {
                 tmp = keys[i].substring(DBSchema.QUICKNOTE_SEARCH.length(), keys[i].length());
@@ -104,7 +112,7 @@ public class DBHelper {
             return res;
         } catch (SnappydbException e) {
             e.printStackTrace();
-            return null;
+            return res;
         }
     }
 
@@ -115,8 +123,9 @@ public class DBHelper {
     // Get all notebook's names for searching
     // Pair<notebook_id, name>
     public List<Pair<String, String>> getAllNotebookNames() {
+        // Move this line from inside to outside of the try_catch block
+        List<Pair<String, String>> res = new ArrayList<>();
         try {
-            List<Pair<String, String>> res = new ArrayList<>();
             String[] notebooks = db.getArray(DBSchema.NOTEBOOK_IDS, String.class);
 
             for (int i = 0; i < notebooks.length; ++i) {
@@ -125,16 +134,19 @@ public class DBHelper {
             return res;
         } catch (SnappydbException e) {
             e.printStackTrace();
-            return null;
+            return res; // don't return NULL - return something initialized object instead
         }
+
     }
 
     // Get all notes' names for searching
     // Pair<note_id, name>
     public List<Pair<String, String>> getAllNoteNames() {
+        List<Pair<String, String>> res = new ArrayList<>();
+        String[] notebooks = new String[]{};
         try {
-            List<Pair<String, String>> res = new ArrayList<>();
-            String[] notebooks = db.getArray(DBSchema.NOTEBOOK_IDS, String.class);
+
+            notebooks = db.getArray(DBSchema.NOTEBOOK_IDS, String.class);
 
             for (int i = 0; i < notebooks.length; ++i) {
                 List<String> noteIds = new ArrayList<>(Arrays.asList(db.getArray(notebooks[i] + DBSchema.NOTEBOOK_NOTE_IDS, String.class)));
@@ -145,15 +157,17 @@ public class DBHelper {
             return res;
         } catch (SnappydbException e) {
             e.printStackTrace();
-            return null;
+            return res;
         }
     }
 
     // get all notes by tag, called in search activity if user pressed a tag result
     public List<NoteCuaThanh> getNotesByTag(String tag) {
+        List<NoteCuaThanh> res = new ArrayList<>();
+        String[] tmp = new String[]{};
         try {
-            List<NoteCuaThanh> res = new ArrayList<>();
-            String[] tmp = db.getArray(DBSchema.TAG_PREFIX + tag, String.class);
+
+            tmp = db.getArray(DBSchema.TAG_PREFIX + tag, String.class);
             List<String> notes = new ArrayList<>(Arrays.asList(tmp));
 
             for (int i = 0 ; i < notes.size(); ++i) {
@@ -162,15 +176,17 @@ public class DBHelper {
             return res;
         } catch (SnappydbException e) {
             e.printStackTrace();
-            return null;
+            return res;
         }
     }
 
     // Get all available tag for querying and searching
     public List<String> getAllTags() {
+        List<String> res = new ArrayList<>();
+        String[] keys = new String[]{};
         try {
-            List<String> res = new ArrayList<>();
-            String[] keys = db.findKeys(DBSchema.TAG_PREFIX);
+
+            keys = db.findKeys(DBSchema.TAG_PREFIX);
 
             for (String tmp : keys) {
                 res.add(tmp.substring(7, tmp.length()));
@@ -178,7 +194,7 @@ public class DBHelper {
             return res;
         } catch (SnappydbException e) {
             e.printStackTrace();
-            return null;
+            return res;
         }
     }
 

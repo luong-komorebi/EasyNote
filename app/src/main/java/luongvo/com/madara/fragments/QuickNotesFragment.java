@@ -97,7 +97,9 @@ public class QuickNotesFragment extends Fragment {
     }
 
     private void setupRvQuickNotes() {
+
         arrQuickNotes = DBHelper.getQuickNotes();
+
         quickNotesAdapter = new QuickNotesAdapter(getContext(), arrQuickNotes);
 
         RecyclerView.LayoutManager layoutManager =

@@ -123,7 +123,7 @@ public class QuickNoteEditorActivity extends AppCompatActivity {
     private void onDoneEditing() {
         quickNote.setTitle(String.valueOf(txtEditQuickNoteTitle.getText()));
         quickNote.setContent(String.valueOf(txtEditQuickNoteContent.getText()));
-        if (!(quickNote.getContent().equals("") && quickNote.getContent().equals(""))) {
+        if (!(quickNote.getContent().equals(""))) {
             DBHelper.saveQuickNote(quickNote,
                 quickNote.getTitle(),
                 quickNote.getContent(),
