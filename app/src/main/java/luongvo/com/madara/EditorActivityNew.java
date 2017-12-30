@@ -51,7 +51,7 @@ public class EditorActivityNew extends AppCompatActivity {
             note = DBHelper.getNote(noteId);
         }
         else {
-          note = new NoteCuaThanh("", "", null);
+          note = new NoteCuaThanh("", "<p data-tag=\"input\"></p>", null);
         }
 
         subjectEditTxt = findViewById(R.id.subject);
@@ -74,6 +74,7 @@ public class EditorActivityNew extends AppCompatActivity {
                 }else{
                     //TODO: Save note to database here
                     DBHelper.saveNote(note, noteSubject, content, null);
+                    System.out.println("saved note activated");
                 }
             }
         });

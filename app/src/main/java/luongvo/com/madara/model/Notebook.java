@@ -114,4 +114,15 @@ public class Notebook {
     public List<String> getNoteIds() {
         return noteIds;
     }
+
+    public void addNoteId(String id) {
+        noteIds.add(id);
+    }
+
+    public boolean isDeleted() {
+        if (deleted != null) {
+            return true;
+        }
+        return false;
+    }
 }

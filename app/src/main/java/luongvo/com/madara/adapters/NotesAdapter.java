@@ -67,8 +67,9 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         // Set values for a note
         vhNote.txtNoteTitle.setText(note.getName());
+        System.out.println(note.getName());
         vhNote.txtNoteTimeStamp.setText(note.getTimeStamp());
-        vhNote.txtNoteDescription.setText(note.getContent());
+        vhNote.txtNoteDescription.setText(note.getStripContent());
         vhNote.imgNoteIcon.setImageResource(R.drawable.ic_note);
 
         // Load reminder date only if it's not null ( DIFFERENT from !isEmpty() )

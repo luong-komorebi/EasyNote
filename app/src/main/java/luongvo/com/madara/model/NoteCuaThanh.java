@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import luongvo.com.madara.database.DBSchema;
 import luongvo.com.madara.utils.ShortDate;
@@ -136,8 +138,27 @@ public class NoteCuaThanh {
         return content;
     }
 
+    public String getStripContent() {
+        String stripped = "";
+        Pattern p = Pattern.compile("<p data-tag=\"input\">(.*?)</p>");
+        Matcher m = p.matcher(content);
+
+        while (m.find()) {
+            stripped = m.group(1);
+        }
+
+        return stripped;
+    }
+
     public void setContent(String content){
         this.content = content;
+    }
+
+    public boolean isDeleted() {
+        if (deleted != null) {
+            return true;
+        }
+        return false;
     }
 }
 
