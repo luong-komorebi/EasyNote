@@ -1,6 +1,7 @@
 package luongvo.com.madara.database;
 
 import android.content.Context;
+import android.util.Log;
 import android.util.Pair;
 
 import luongvo.com.madara.R;
@@ -214,6 +215,13 @@ public class DBHelper {
     public static void saveNote(NoteCuaThanh note, String name, String content, List<String> tags) {
     	note.update(name, content, tags);
     	note.write(db);
+
+    	// Improvised
+        String[] notebookIDs;
+        notebookIDs = DBHelper.getNotebooksID();
+        Notebook temp = new Notebook(notebookIDs[0], db);
+        temp.addNoteId(note.getId());
+        temp.write(db);
     }
 
     // Delete a notebook
@@ -227,27 +235,27 @@ public class DBHelper {
 
 
     // Delete a note
-    public void deleteNote(NoteCuaThanh note) {
+    public static void deleteNote(NoteCuaThanh note) {
         note.delete();
         note.write(db);
     }
 
     // Create/save new notebook
     // Similar to saveNote
-    public void saveNotebook(Notebook notebook, String name, int cover, String password) {
+    public static void saveNotebook(Notebook notebook, String name, int cover, String password) {
         notebook.update(name, cover, password);
         notebook.write(db);
     }
 
     // Delete a notebook
-    public void deleteNotebook(Notebook notebook) {
+    public static void deleteNotebook(Notebook notebook) {
         notebook.delete();
         notebook.write(db);
         deleteRelatedNotes(notebook);
     }
 
     // Delete all related notes
-    private void deleteRelatedNotes(Notebook notebook) {
+    private static void deleteRelatedNotes(Notebook notebook) {
         List<String> noteIds = notebook.getNoteIds();
         try {
             for (String tmp : noteIds) {
@@ -276,7 +284,7 @@ public class DBHelper {
             madara.write(db);
 
             noteIds.add(delNote.getId());
-            Notebook firstNB = new Notebook("My First Notebook", R.drawable.notebook_cover_8, "", noteIds);
+            Notebook firstNB = new Notebook("My First Notebook", R.drawable.notebook_cover_8, "", new ArrayList<String>());
             firstNB.write(db);
 
             List<String> firstBelongTo = new ArrayList<>();

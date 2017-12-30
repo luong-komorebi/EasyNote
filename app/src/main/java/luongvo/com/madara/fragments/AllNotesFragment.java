@@ -110,7 +110,13 @@ public class AllNotesFragment extends Fragment {
         assert notebookIDs != null;
         for (String tmp : notebookIDs) {
             System.out.println(tmp);
-            arrNotes.addAll(DBHelper.getNotes(tmp));
+            ArrayList<NoteCuaThanh> temp = new ArrayList<>();
+            temp.addAll(DBHelper.getNotes(tmp));
+
+            for (NoteCuaThanh note : temp) {
+                if (!note.isDeleted())
+                    arrNotes.add(note);
+            }
         }
 
         notesAdapter = new NotesAdapter(getActivity(), this.arrNotes);
@@ -127,6 +133,16 @@ public class AllNotesFragment extends Fragment {
             @Override
             public boolean swipeLeft(Object itemData) {
                 //TODO: replace with swipe-left action on an item
+                NoteCuaThanh tmp = (NoteCuaThanh)itemData;
+                System.out.println("Deleted id: " + tmp.getId());
+                DBHelper.deleteNote(tmp);
+                for (int i = 0; i < arrNotes.size(); ++i) {
+                    if (arrNotes.get(i).getId().equals(tmp.getId())) {
+                        arrNotes.remove(i);
+                        notesAdapter.notifyDataSetChanged();
+                        break;
+                    }
+                }
                 return true;
             }
 

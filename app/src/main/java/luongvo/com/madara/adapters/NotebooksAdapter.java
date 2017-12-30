@@ -8,9 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import luongvo.com.madara.R;
+import luongvo.com.madara.database.DBHelper;
 import luongvo.com.madara.model.Notebook;
 import luongvo.com.madara.utils.Constants;
 
@@ -37,7 +39,7 @@ public class NotebooksAdapter extends RecyclerView.Adapter<NotebooksAdapter.Note
 
     @Override
     public void onBindViewHolder(final NotebookViewHolder notebookViewHolder, int position) {
-        Notebook notebookResources = arrNotebooks.get(position);
+        final Notebook notebookResources = arrNotebooks.get(position);
 
         // TODO: notebookResources - onBindViewHolder - please notice the binding process
         /*
@@ -84,7 +86,8 @@ public class NotebooksAdapter extends RecyclerView.Adapter<NotebooksAdapter.Note
             @Override
             public void onClick(View view) {
                 // TODO: Delete Notebook
-
+                DBHelper.deleteNotebook(notebookResources);
+                System.out.println("Notebook DELETED");
             }
         });
     }

@@ -19,6 +19,7 @@ import luongvo.com.madara.database.DBHelper;
 import luongvo.com.madara.model.Notebook;
 import luongvo.com.madara.utils.GridSpacingItemDecoration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -90,7 +91,16 @@ public class NotebooksFragment extends Fragment {
     }
 
     private void setupRvNotebooks() {
-        arrNotebooks = DBHelper.getNotebooks();
+        arrNotebooks = new ArrayList<>();
+        List<Notebook> temp = new ArrayList<>();
+        temp.addAll(DBHelper.getNotebooks());
+        for (Notebook tmp : temp) {
+            if (tmp != null) {
+                if (!tmp.isDeleted())
+                    arrNotebooks.add(tmp);
+            }
+
+        }
 
         // TODO: Replace example ArrayList with real data list
         notebooksAdapter = new NotebooksAdapter(getContext(), arrNotebooks);
